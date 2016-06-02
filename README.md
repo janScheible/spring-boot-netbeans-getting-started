@@ -4,7 +4,7 @@
 
 ## Usage
 
-Just clone the repository and you're ready to go. You'll get a nice template for a Spring Boot application including templating and integration testing facilities.
+Just clone the repository and you're ready to go. You'll get a nice template for a Spring Boot application including templating web-based database browser and integration testing facilities.
 
 ## Prerequisites
 1. recent JDK 8
