@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Spring Boot Netbeans Getting Started</title>
+
+		<link rel="stylesheet" href="css/style.css"/>
+		
+		<script src="js/lib/jquery-2.1.4.js"></script>
+	</head>
+	<body>
+		<h1>Technology Stack</h1>
+		
+		<table>
+			<tr>
+				<td><img class="logo" src="img/java.png"/></td>
+				<td><img class="logo" src="img/netbeans.png"/></td>
+			</tr>
+			<tr>
+				<td><img class="logo" src="img/spring-boot.png"/></td>
+				<td><img class="logo" src="img/thymeleaf.png"/></td>
+			</tr>
+			<tr>
+				<td>
+					<img class="logo" src="img/h2.png"/><br/>
+					<a href="/h2-console/">H2 Console</a>
+				</td>
+				<td><img class="logo" src="img/typescript.jpg"/></td>
+			</tr>			
+		</table>
+		
+		<div class="footer date-time" th:text="${dateTime}">*DateTime*</div>
+		
+		<script src="js/transpiled.js"></script>
+	</body>
+</html>
