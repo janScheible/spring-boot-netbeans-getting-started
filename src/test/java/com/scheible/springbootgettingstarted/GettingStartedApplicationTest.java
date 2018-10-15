@@ -8,9 +8,9 @@ import org.junit.Test;
  * @author sj
  */
 public class GettingStartedApplicationTest {
-	
+
 	@Test
 	public void unitTest() {
 		assertThat(42).isEqualTo(42);
-	}	
+	}
 }
