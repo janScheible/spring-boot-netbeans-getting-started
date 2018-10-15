@@ -63,6 +63,22 @@
 		</activatedProfiles>
 	</action>
 	<action>
+		<actionName>test</actionName>
+		<packagings>
+			<packaging>*</packaging>
+		</packagings>
+		<goals>
+			<goal>test</goal>
+		</goals>
+		<activatedProfiles>
+			<activatedProfile>skip-all-but-compilation-and-resources</activatedProfile>
+			<activatedProfile>skip-compilation-and-resources</activatedProfile>
+		</activatedProfiles>
+		<properties>
+			<skipTests>false</skipTests>
+		</properties>
+	</action>	
+	<action>
 		<actionName>CUSTOM-Full Build</actionName>
 		<displayName>Full Build</displayName>
 		<goals>
@@ -70,24 +86,6 @@
 			<goal>install</goal>
 		</goals>
 	</action>	
-	<action>
-		<actionName>CUSTOM-Full Build with QA</actionName>
-		<displayName>Full Build with QA</displayName>
-		<goals>
-			<goal>clean</goal>
-			<goal>install</goal>
-			<goal>org.codehaus.mojo:findbugs-maven-plugin:3.0.5:check</goal>
-			<goal>failsafe:integration-test</goal>
-			<goal>com.github.ekryd.sortpom:sortpom-maven-plugin:2.8.0:verify</goal>
-			<goal>net.revelc.code.formatter:formatter-maven-plugin:2.8.0:validate</goal>
-		</goals>
-		<properties>
-			<sort.keepBlankLines>true</sort.keepBlankLines>
-			<sort.nrOfIndentSpace>-1</sort.nrOfIndentSpace>
-			<configfile>${project.basedir}/eclipse-formatter-config.xml</configfile>
-			<lineending>KEEP</lineending>
-		</properties>
-	</action>		
 	<action>
 		<actionName>CUSTOM-Integration Test</actionName>
 		<displayName>Integration Test</displayName>
@@ -113,51 +111,35 @@
 		<actionName>CUSTOM-Sortpom (verify only)</actionName>
 		<displayName>Sortpom (verify only)</displayName>
 		<goals>
-			<goal>com.github.ekryd.sortpom:sortpom-maven-plugin:2.8.0:verify</goal>
+			<goal>com.github.ekryd.sortpom:sortpom-maven-plugin:verify</goal>
 		</goals>
-		<properties>
-			<sort.keepBlankLines>true</sort.keepBlankLines>
-			<sort.nrOfIndentSpace>-1</sort.nrOfIndentSpace>
-		</properties>
 	</action> 
 	<action>
 		<actionName>CUSTOM-Sortpom</actionName>
 		<displayName>Sortpom</displayName>
 		<goals>
-			<goal>com.github.ekryd.sortpom:sortpom-maven-plugin:2.8.0:sort</goal>
+			<goal>com.github.ekryd.sortpom:sortpom-maven-plugin:sort</goal>
 		</goals>
-		<properties>
-			<sort.keepBlankLines>true</sort.keepBlankLines>
-			<sort.nrOfIndentSpace>-1</sort.nrOfIndentSpace>
-		</properties>
 	</action> 		
 	<action>
 		<actionName>CUSTOM-Enforce Dependency Convergence</actionName>
 		<displayName>Enforce Dependency Convergence</displayName>
 		<goals>
-			<goal>enforcer:enforce@dependency-convergence</goal>
+			<goal>enforcer:enforce@default</goal>
 		</goals>
 	</action> 	
 	<action>
 		<actionName>CUSTOM-Eclipse Code Formatter (verify only)</actionName>
 		<displayName>Eclipse Code Formatter (verify only)</displayName>
 		<goals>
-			<goal>net.revelc.code.formatter:formatter-maven-plugin:2.8.0:validate</goal>
+			<goal>net.revelc.code.formatter:formatter-maven-plugin:validate</goal>
 		</goals>
-		<properties>
-			<configfile>${project.basedir}/eclipse-formatter-config.xml</configfile>
-			<lineending>KEEP</lineending>
-		</properties>
 	</action> 	
 	<action>
 		<actionName>CUSTOM-Eclipse Code Formatter</actionName>
 		<displayName>Eclipse Code Formatter</displayName>
 		<goals>
-			<goal>net.revelc.code.formatter:formatter-maven-plugin:2.8.0:format</goal>
+			<goal>net.revelc.code.formatter:formatter-maven-plugin:format</goal>
 		</goals>
-		<properties>
-			<configfile>${project.basedir}/eclipse-formatter-config.xml</configfile>
-			<lineending>KEEP</lineending>
-		</properties>
-	</action> 		
+	</action> 	
 </actions>
