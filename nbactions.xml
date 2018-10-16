@@ -94,10 +94,10 @@
 		</goals>
 	</action>	
 	<action>
-		<actionName>CUSTOM-FindBugs</actionName>
-		<displayName>FindBugs</displayName>
+		<actionName>CUSTOM-SpotBugs</actionName>
+		<displayName>SpotBugs</displayName>
 		<goals>
-			<goal>org.codehaus.mojo:findbugs-maven-plugin:3.0.5:check</goal>
+			<goal>com.github.spotbugs:spotbugs-maven-plugin:check</goal>
 		</goals>
 	</action>
 	<action>

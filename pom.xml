@@ -15,23 +15,44 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<!-- Sortpom Plugin -->
-		<sort.keepBlankLines>true</sort.keepBlankLines>
-		<sort.nrOfIndentSpace>-1</sort.nrOfIndentSpace>
-		<!-- (Eclipse) Formatter Plugin -->
-		<configfile>${project.basedir}/eclipse-formatter-config.xml</configfile>
-		<lineending>KEEP</lineending>
+		<java.version>1.8</java.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>net.jcip</groupId>
+				<artifactId>jcip-annotations</artifactId>
+				<version>1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-annotations</artifactId>
+				<version>3.1.7</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>net.jcip</groupId>
+			<artifactId>jcip-annotations</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.github.spotbugs</groupId>
+			<artifactId>spotbugs-annotations</artifactId>
 			<optional>true</optional>
 		</dependency>
 
@@ -65,9 +86,9 @@
 					<version>2.8.0</version>
 				</plugin>
 				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>findbugs-maven-plugin</artifactId>
-					<version>3.0.5</version>
+					<groupId>com.github.spotbugs</groupId>
+					<artifactId>spotbugs-maven-plugin</artifactId>
+					<version>3.1.6</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -82,7 +103,7 @@
 				</configuration>
 			</plugin>
 			<plugin>
-                <groupId>pl.project13.maven</groupId>
+				<groupId>pl.project13.maven</groupId>
 				<artifactId>git-commit-id-plugin</artifactId>
 			</plugin>
 			<plugin>
@@ -95,6 +116,12 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<keepBlankLines>true</keepBlankLines>
+					<nrOfIndentSpace>-1</nrOfIndentSpace>
+					<createBackupFile>false</createBackupFile>
+					<verifyFail>Stop</verifyFail>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>net.revelc.code.formatter</groupId>
@@ -106,10 +133,14 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<configFile>${project.basedir}/eclipse-formatter-config.xml</configFile>
+					<LineEnding>KEEP</LineEnding>
+				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
 				<executions>
 					<execution>
 						<goals>
@@ -204,7 +235,7 @@
 			<id>skip-all-but-compilation-and-resources</id>
 
 			<build>
-				<plugins>	
+				<plugins>
 					<plugin>
 						<groupId>pl.project13.maven</groupId>
 						<artifactId>git-commit-id-plugin</artifactId>
@@ -214,7 +245,7 @@
 								<phase>none</phase>
 							</execution>
 						</executions>
-					</plugin>			
+					</plugin>
 					<plugin>
 						<groupId>com.github.ekryd.sortpom</groupId>
 						<artifactId>sortpom-maven-plugin</artifactId>
@@ -234,7 +265,7 @@
 								<phase>none</phase>
 							</execution>
 						</executions>
-					</plugin>	
+					</plugin>
 					<plugin>
 						<artifactId>maven-enforcer-plugin</artifactId>
 						<executions>
@@ -255,15 +286,15 @@
 						</executions>
 					</plugin>
 					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>findbugs-maven-plugin</artifactId>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs-maven-plugin</artifactId>
 						<executions>
 							<execution>
 								<id>default</id>
 								<phase>none</phase>
 							</execution>
 						</executions>
-					</plugin>					
+					</plugin>
 					<plugin>
 						<artifactId>maven-failsafe-plugin</artifactId>
 						<executions>
@@ -300,7 +331,7 @@
 								<phase>none</phase>
 							</execution>
 						</executions>
-					</plugin>					
+					</plugin>
 				</plugins>
 			</build>
 
