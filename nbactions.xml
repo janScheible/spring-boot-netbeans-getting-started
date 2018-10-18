@@ -97,28 +97,28 @@
 		<actionName>CUSTOM-SpotBugs</actionName>
 		<displayName>SpotBugs</displayName>
 		<goals>
-			<goal>com.github.spotbugs:spotbugs-maven-plugin:check</goal>
+			<goal>spotbugs:check</goal>
 		</goals>
 	</action>
 	<action>
 		<actionName>CUSTOM-Dependency Tree</actionName>
 		<displayName>Dependency Tree</displayName>
 		<goals>
-			<goal>org.apache.maven.plugins:maven-dependency-plugin:3.0.2:tree</goal>
+			<goal>dependency:tree</goal>
 		</goals>
 	</action> 	
 	<action>
 		<actionName>CUSTOM-Sortpom (verify only)</actionName>
 		<displayName>Sortpom (verify only)</displayName>
 		<goals>
-			<goal>com.github.ekryd.sortpom:sortpom-maven-plugin:verify</goal>
+			<goal>sortpom:verify</goal>
 		</goals>
 	</action> 
 	<action>
 		<actionName>CUSTOM-Sortpom</actionName>
 		<displayName>Sortpom</displayName>
 		<goals>
-			<goal>com.github.ekryd.sortpom:sortpom-maven-plugin:sort</goal>
+			<goal>sortpom:sort</goal>
 		</goals>
 	</action> 		
 	<action>
@@ -132,14 +132,14 @@
 		<actionName>CUSTOM-Eclipse Code Formatter (verify only)</actionName>
 		<displayName>Eclipse Code Formatter (verify only)</displayName>
 		<goals>
-			<goal>net.revelc.code.formatter:formatter-maven-plugin:validate</goal>
+			<goal>formatter:validate</goal>
 		</goals>
 	</action> 	
 	<action>
 		<actionName>CUSTOM-Eclipse Code Formatter</actionName>
 		<displayName>Eclipse Code Formatter</displayName>
 		<goals>
-			<goal>net.revelc.code.formatter:formatter-maven-plugin:format</goal>
+			<goal>formatter:format</goal>
 		</goals>
 	</action> 	
 </actions>
