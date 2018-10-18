@@ -23,10 +23,10 @@ Highly opinionated selection of Maven plugins made accessible via the Netbeans U
   - **[Full Build]** a full `clean install` with verification
   - **[Integration Test]** `failsafe:integration-test`
   - **[SpotBugs]** `spotbugs:check`
-  - **[Dependecy Tree]** `dependency:tree`
+  - **[Dependency Tree]** `dependency:tree`
   - **[Sortpom (verify only)]** `sortpom:verify`
   - **[Sortpom]** `sortpom:sorty`
-  - **[Enforce Dependecy Convergence]** `enforcer:enforce`
+  - **[Enforce Dependency Convergence]** `enforcer:enforce`
   - **[Eclipse Code Formatter (verify only)]** `formatter:validate` according to `eclipse-formatter-config.xml`
   - **[Eclipse Code Formatter]** `formatter:format` according to `eclipse-formatter-config.xml`
 
