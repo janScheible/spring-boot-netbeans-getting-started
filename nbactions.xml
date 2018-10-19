@@ -141,5 +141,15 @@
 		<goals>
 			<goal>formatter:format</goal>
 		</goals>
-	</action> 	
+	</action>
+	<action>
+		<actionName>CUSTOM-Eclipse Code Formatter File</actionName>
+		<displayName>Eclipse Code Formatter File</displayName>
+		<goals>
+			<goal>formatter:format</goal>
+		</goals>
+		<properties>
+			<formatter.includes>**/${classNameWithExtension}</formatter.includes>
+		</properties>
+	</action>	
 </actions>
