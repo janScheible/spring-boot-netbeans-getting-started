@@ -23,11 +23,12 @@ Highly opinionated selection of Maven plugins made accessible via the Netbeans U
   - **[Full Build]** a full `clean install` with verification
   - **[Integration Test]** `failsafe:integration-test`
   - **[SpotBugs]** `spotbugs:check`
+  - **[SpotBugs GUI]** `spotbugs:gui`  
   - **[Dependency Tree]** `dependency:tree`
-  - **[Sortpom (verify only)]** `sortpom:verify`
   - **[Sortpom]** `sortpom:sorty`
   - **[Enforce Dependency Convergence]** `enforcer:enforce`
-  - **[Eclipse Code Formatter (verify only)]** `formatter:validate` according to `eclipse-formatter-config.xml`
-  - **[Eclipse Code Formatter]** `formatter:format` according to `eclipse-formatter-config.xml`
+  - **[Format Code]** `formatter:format` according to `eclipse-formatter-config.xml` and `impsort:sort`
+  - **[Available Dependency Updates]** `versions:display-dependency-updates`
+  - **[PMD Clone Detection]** `pmd:cpd-check`
 
   **Note**: In order to speed up the IDE actions as much as possible **[Run]**, **[Debug]**, and **[Test]** are even skipping `resources:[test]Resources` and `compiler:[test]Compile` and simply use the current contents of the `target` directory.

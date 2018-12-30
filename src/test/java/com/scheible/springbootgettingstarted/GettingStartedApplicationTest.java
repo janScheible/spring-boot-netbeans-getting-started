@@ -1,6 +1,7 @@
 package com.scheible.springbootgettingstarted;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 
 /**

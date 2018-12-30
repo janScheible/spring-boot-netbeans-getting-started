@@ -101,19 +101,19 @@
 		</goals>
 	</action>
 	<action>
+		<actionName>CUSTOM-SpotBugs GUI</actionName>
+		<displayName>SpotBugs GUI</displayName>
+		<goals>
+			<goal>spotbugs:gui</goal>
+		</goals>
+	</action>	
+	<action>
 		<actionName>CUSTOM-Dependency Tree</actionName>
 		<displayName>Dependency Tree</displayName>
 		<goals>
 			<goal>dependency:tree</goal>
 		</goals>
 	</action> 	
-	<action>
-		<actionName>CUSTOM-Sortpom (verify only)</actionName>
-		<displayName>Sortpom (verify only)</displayName>
-		<goals>
-			<goal>sortpom:verify</goal>
-		</goals>
-	</action> 
 	<action>
 		<actionName>CUSTOM-Sortpom</actionName>
 		<displayName>Sortpom</displayName>
@@ -129,27 +129,37 @@
 		</goals>
 	</action> 	
 	<action>
-		<actionName>CUSTOM-Eclipse Code Formatter (verify only)</actionName>
-		<displayName>Eclipse Code Formatter (verify only)</displayName>
+		<actionName>CUSTOM-Format Code</actionName>
+		<displayName>Format Code</displayName>
 		<goals>
-			<goal>formatter:validate</goal>
+			<goal>impsort:sort</goal>
+			<goal>formatter:format</goal>
 		</goals>
 	</action> 	
 	<action>
-		<actionName>CUSTOM-Eclipse Code Formatter</actionName>
-		<displayName>Eclipse Code Formatter</displayName>
+		<actionName>CUSTOM-Format Code</actionName>
+		<displayName>Format Code</displayName>
 		<goals>
-			<goal>formatter:format</goal>
-		</goals>
-	</action>
-	<action>
-		<actionName>CUSTOM-Eclipse Code Formatter File</actionName>
-		<displayName>Eclipse Code Formatter File</displayName>
-		<goals>
+			<goal>impsort:sort</goal>
 			<goal>formatter:format</goal>
 		</goals>
 		<properties>
 			<formatter.includes>**/${classNameWithExtension}</formatter.includes>
+			<impsort.includes>**/${classNameWithExtension}</impsort.includes>
 		</properties>
+	</action> 
+	<action>
+		<actionName>CUSTOM-Available Dependency Updates</actionName>
+		<displayName>Available Dependency Updates</displayName>
+		<goals>
+			<goal>versions:display-dependency-updates</goal>
+		</goals>
+	</action>	
+	<action>
+		<actionName>CUSTOM-PMD Clone Detection</actionName>
+		<displayName>PMD Clone Detection</displayName>
+		<goals>
+			<goal>pmd:cpd-check</goal>
+		</goals>
 	</action>	
 </actions>
