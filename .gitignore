@@ -1,1 +1,3 @@
-/target/
+/multi-module-project/target/
+/maven-skip-execution-profile-extension/target/
+/single-module-project/target/
