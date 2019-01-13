@@ -10,7 +10,8 @@
 			<goal>install</goal>
 		</goals>
 		<activatedProfiles>
-			<activatedProfile>skip-all-but-compilation-and-resources</activatedProfile>
+			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
+			<activatedProfile>skip-unit-tests</activatedProfile>
 		</activatedProfiles>
 	</action>
 	<action>
@@ -22,7 +23,8 @@
 			<goal>install</goal>
 		</goals>
 		<activatedProfiles>
-			<activatedProfile>skip-all-but-compilation-and-resources</activatedProfile>
+			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
+			<activatedProfile>skip-unit-tests</activatedProfile>
 		</activatedProfiles>
 	</action>		
 	<action>
@@ -40,8 +42,9 @@
 			<Env.SPRING_OUTPUT_ANSI_ENABLED>always</Env.SPRING_OUTPUT_ANSI_ENABLED>
 		</properties>
 		<activatedProfiles>
-			<activatedProfile>skip-all-but-compilation-and-resources</activatedProfile>
+			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
 			<activatedProfile>skip-compilation-and-resources</activatedProfile>
+			<activatedProfile>skip-unit-tests</activatedProfile>
 		</activatedProfiles>
 	</action>
 	<action>
@@ -58,8 +61,9 @@
 			<Env.SPRING_OUTPUT_ANSI_ENABLED>always</Env.SPRING_OUTPUT_ANSI_ENABLED>
 		</properties>
 		<activatedProfiles>
-			<activatedProfile>skip-all-but-compilation-and-resources</activatedProfile>
+			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
 			<activatedProfile>skip-compilation-and-resources</activatedProfile>
+			<activatedProfile>skip-unit-tests</activatedProfile>
 		</activatedProfiles>
 	</action>
 	<action>
@@ -71,12 +75,9 @@
 			<goal>test</goal>
 		</goals>
 		<activatedProfiles>
-			<activatedProfile>skip-all-but-compilation-and-resources</activatedProfile>
+			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
 			<activatedProfile>skip-compilation-and-resources</activatedProfile>
 		</activatedProfiles>
-		<properties>
-			<skipTests>false</skipTests>
-		</properties>
 	</action>	
 	<action>
 		<actionName>CUSTOM-Full Build</actionName>
@@ -84,6 +85,14 @@
 		<goals>
 			<goal>clean</goal>
 			<goal>install</goal>
+		</goals>
+	</action>
+	<action>
+		<actionName>CUSTOM-Format Code</actionName>
+		<displayName>Format Code</displayName>
+		<goals>
+			<goal>impsort:sort</goal>
+			<goal>formatter:format</goal>
 		</goals>
 	</action>	
 	<action>
@@ -113,7 +122,14 @@
 		<goals>
 			<goal>dependency:tree</goal>
 		</goals>
-	</action> 	
+	</action>
+	<action>
+		<actionName>CUSTOM-POM Hierarchy Tree</actionName>
+		<displayName>POM Hierarchy Tree</displayName>
+		<goals>
+			<goal>hierarchy:tree</goal>
+		</goals>
+	</action>		
 	<action>
 		<actionName>CUSTOM-Sortpom</actionName>
 		<displayName>Sortpom</displayName>
@@ -125,15 +141,7 @@
 		<actionName>CUSTOM-Enforce Dependency Convergence</actionName>
 		<displayName>Enforce Dependency Convergence</displayName>
 		<goals>
-			<goal>enforcer:enforce@default</goal>
-		</goals>
-	</action> 	
-	<action>
-		<actionName>CUSTOM-Format Code</actionName>
-		<displayName>Format Code</displayName>
-		<goals>
-			<goal>impsort:sort</goal>
-			<goal>formatter:format</goal>
+			<goal>enforcer:enforce@dependency-convergence</goal>
 		</goals>
 	</action> 	
 	<action>

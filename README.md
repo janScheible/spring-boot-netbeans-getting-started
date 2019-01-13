@@ -21,13 +21,14 @@ Highly opinionated selection of Maven plugins made accessible via the Netbeans U
 - **[Debug]** `spring-boot:run` with debugger attached
 - Run Maven
   - **[Full Build]** a full `clean install` with verification
+  - **[Format Code]** `formatter:format` according to `eclipse-formatter-config.xml` and `impsort:sort`  
   - **[Integration Test]** `failsafe:integration-test`
   - **[SpotBugs]** `spotbugs:check`
   - **[SpotBugs GUI]** `spotbugs:gui`  
   - **[Dependency Tree]** `dependency:tree`
+  - **[POM Hierarchy Tree]** `hierarchy:tree`
   - **[Sortpom]** `sortpom:sorty`
-  - **[Enforce Dependency Convergence]** `enforcer:enforce`
-  - **[Format Code]** `formatter:format` according to `eclipse-formatter-config.xml` and `impsort:sort`
+  - **[Enforce Dependency Convergence]** `enforcer:enforce@dependency-convergence`
   - **[Available Dependency Updates]** `versions:display-dependency-updates`
   - **[PMD Clone Detection]** `pmd:cpd-check`
 
