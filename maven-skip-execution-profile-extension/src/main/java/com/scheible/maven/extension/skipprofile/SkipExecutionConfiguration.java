@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
+import static java.util.Objects.requireNonNull;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -26,8 +27,8 @@ public class SkipExecutionConfiguration {
 		private final String artifactId;
 
 		Plugin(String groupId, String artifactId) {
-			this.groupId = groupId;
-			this.artifactId = artifactId;
+			this.groupId = requireNonNull(groupId);
+			this.artifactId = requireNonNull(artifactId);
 		}
 
 		public String getGroupId() {
@@ -88,7 +89,13 @@ public class SkipExecutionConfiguration {
 	
 	static Map.Entry<Plugin, String> parse(final String line) {
 		final String[] pluginAndExecutionId = line.split(Pattern.quote("@"));
+		if(pluginAndExecutionId.length != 2) {
+			throw new IllegalArgumentException("'" + line + "' does not contain an executionId preceded by an '@'! Required format: 'groupId:artifactId@executionId'.");
+		}
 		final String[] groupIdAndArtifactId = pluginAndExecutionId[0].split(Pattern.quote(":"));
+		if(groupIdAndArtifactId.length != 2) {
+			throw new IllegalArgumentException("'" + line + "' does not contain an groupId and artifactId separated by an ':'! Required format: 'groupId:artifactId@executionId'.");
+		}
 		
 		final Plugin plugin = new Plugin(groupIdAndArtifactId[0], groupIdAndArtifactId[1]);
 		

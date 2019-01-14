@@ -7,6 +7,20 @@
 	<version>1.0.0</version>
 	
 	<packaging>jar</packaging>
+	<name>maven-skip-execution-profile-extension</name>
+	
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Jan Scheible</name>
+		</developer>
+	</developers>	
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
