@@ -98,11 +98,6 @@
 					<artifactId>maven-pmd-plugin</artifactId>
 					<version>3.11.0</version>
 				</plugin>
-				<plugin>
-					<groupId>com.github.exampledriven</groupId>
-					<artifactId>hierarchy-maven-plugin</artifactId>
-					<version>1.4</version>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 

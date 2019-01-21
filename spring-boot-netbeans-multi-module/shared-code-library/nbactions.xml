@@ -124,12 +124,26 @@
 		</goals>
 	</action>
 	<action>
+		<actionName>CUSTOM-Dependency Graph</actionName>
+		<displayName>Dependency Graph</displayName>
+		<goals>
+			<goal>com.github.ferstl:depgraph-maven-plugin:graph</goal>
+		</goals>
+		<properties>
+			<showConflicts>true</showConflicts>
+			<showDuplicates>true</showDuplicates>
+			<showVersions>true</showVersions>
+			<graphFormat>gml</graphFormat>
+			<scope>compile</scope>
+		</properties>
+	</action>	
+	<action>
 		<actionName>CUSTOM-POM Hierarchy Tree</actionName>
 		<displayName>POM Hierarchy Tree</displayName>
 		<goals>
-			<goal>hierarchy:tree</goal>
+			<goal>com.github.exampledriven:hierarchy-maven-plugin:tree</goal>
 		</goals>
-	</action>		
+	</action>
 	<action>
 		<actionName>CUSTOM-Sortpom</actionName>
 		<displayName>Sortpom</displayName>

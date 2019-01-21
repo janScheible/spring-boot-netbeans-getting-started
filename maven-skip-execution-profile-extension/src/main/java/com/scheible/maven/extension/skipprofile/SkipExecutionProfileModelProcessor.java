@@ -97,9 +97,6 @@ public class SkipExecutionProfileModelProcessor implements ModelProcessor {
 		});
 
 		createProfile(model, "skip-all-but-compilation-and-resources-and-unit-tests").ifPresent(profile -> {
-			createSkipExecutionPlugin(profile, DEFAULT_GROUP_ID, "maven-jar-plugin", "default-jar");
-			createSkipExecutionPlugin(profile, DEFAULT_GROUP_ID, "maven-install-plugin", "default-install");
-
 			for (Map.Entry<SkipExecutionConfiguration.Plugin, Set<String>> pluginExecutionToSkip
 					: skipExecutionConfiguration.getPluginExecutionsIds().entrySet()) {
 				createSkipExecutionPlugin(profile, pluginExecutionToSkip.getKey().getGroupId(),

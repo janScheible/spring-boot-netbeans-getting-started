@@ -26,6 +26,7 @@ Highly opinionated selection of Maven plugins made accessible via the Netbeans U
   - **[SpotBugs]** `spotbugs:check`
   - **[SpotBugs GUI]** `spotbugs:gui`  
   - **[Dependency Tree]** `dependency:tree`
+  - **[Dependency Graph]** `depgraph:graph`
   - **[POM Hierarchy Tree]** `hierarchy:tree`
   - **[Sortpom]** `sortpom:sorty`
   - **[Enforce Dependency Convergence]** `enforcer:enforce@dependency-convergence`
