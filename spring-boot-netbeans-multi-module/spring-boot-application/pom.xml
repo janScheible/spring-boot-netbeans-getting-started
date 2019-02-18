@@ -17,6 +17,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>scheible.com.springbootgettingstarted.multimodule.library</groupId>
+			<artifactId>shared-code-library</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>

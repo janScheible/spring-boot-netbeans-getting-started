@@ -14,7 +14,7 @@
 
 	<packaging>pom</packaging>
 	<name>spring-boot-netbeans-multi-module</name>
-	
+
 	<modules>
 		<module>spring-boot-application</module>
 		<module>shared-code-library</module>

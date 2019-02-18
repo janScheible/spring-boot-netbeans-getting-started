@@ -15,9 +15,8 @@
 	<packaging>jar</packaging>
 	<name>spring-boot-netbeans-multi-module :: shared-code-library</name>
 
-	<dependencies>
-	</dependencies>
-	
+	<dependencies></dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
