@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>scheible.com.springbootgettingstarted.multimodule</groupId>
+		<groupId>com.scheible.springbootgettingstarted.multimodule</groupId>
 		<artifactId>spring-boot-netbeans-multi-module</artifactId>
 		<version>0.2.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>scheible.com.springbootgettingstarted.multimodule.library</groupId>
+	<groupId>com.scheible.springbootgettingstarted.multimodule.library</groupId>
 	<artifactId>shared-code-library</artifactId>
 	<version>0.2.0-SNAPSHOT</version>
 

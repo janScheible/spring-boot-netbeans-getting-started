@@ -115,6 +115,22 @@
 		<goals>
 			<goal>spotbugs:gui</goal>
 		</goals>
+	</action>
+	<action>
+		<actionName>CUSTOM-CheckStyle</actionName>
+		<displayName>CheckStyle</displayName>
+		<goals>
+			<goal>checkstyle:check</goal>
+		</goals>
+	</action>
+	<action>
+		<actionName>CUSTOM-Static Code Analysis</actionName>
+		<displayName>Static Code Analysis</displayName>
+		<goals>
+			<goal>spotbugs:check</goal>
+			<goal>checkstyle:check</goal>
+			<goal>pmd:cpd-check</goal>
+		</goals>
 	</action>	
 	<action>
 		<actionName>CUSTOM-Dependency Tree</actionName>

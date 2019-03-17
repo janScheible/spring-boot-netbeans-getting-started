@@ -1,5 +1,5 @@
-/maven-skip-execution-profile-extension/target/
-/skip-execution-profile-simple-demo/target/
+/skip-execution-profile/skip-execution-profile-simple-demo/target/
+/skip-execution-profile/maven-skip-execution-profile-extension/target/
 /spring-boot-netbeans-multi-module/target/
 /spring-boot-netbeans-multi-module/shared-code-library/target/
 /spring-boot-netbeans-multi-module/spring-boot-application/target/
