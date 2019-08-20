@@ -5,12 +5,11 @@
 	<parent>
 		<groupId>com.scheible.springbootgettingstarted.multimodule</groupId>
 		<artifactId>spring-boot-netbeans-multi-module</artifactId>
-		<version>0.2.0-SNAPSHOT</version>
+		<version>${revision}</version>
 	</parent>
 
 	<groupId>com.scheible.springbootgettingstarted.multimodule.library</groupId>
 	<artifactId>shared-code-library</artifactId>
-	<version>0.2.0-SNAPSHOT</version>
 
 	<packaging>jar</packaging>
 	<name>spring-boot-netbeans-multi-module :: shared-code-library</name>
