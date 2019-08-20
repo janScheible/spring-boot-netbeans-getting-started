@@ -255,7 +255,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<configLocation>checkstyle.xml</configLocation>
+					<configLocation>${maven.multiModuleProjectDirectory}/checkstyle.xml</configLocation>
 				</configuration>
 			</plugin>
 			<plugin>
