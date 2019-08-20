@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.scheible.springbootgettingstarted.multimodule</groupId>
+		<artifactId>spring-boot-netbeans-multi-module</artifactId>
+		<version>${revision}</version>
+	</parent>
+
+	<groupId>com.scheible.springbootgettingstarted.multimodule.library</groupId>
+	<artifactId>shared-code-library</artifactId>
+
+	<packaging>jar</packaging>
+	<name>spring-boot-netbeans-multi-module :: shared-code-library</name>
+
+	<dependencies></dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<configuration>
+					<excludeFilterFile>${project.basedir}/spotbugs-exclude.xml</excludeFilterFile>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
