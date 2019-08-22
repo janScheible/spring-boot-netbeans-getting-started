@@ -32,6 +32,7 @@
 		<fb-contrib.version>7.4.3.sb</fb-contrib.version>
 
 		<maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
+		<flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
 		<jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
 		<sortpom-maven-plugin.version>2.10.0</sortpom-maven-plugin.version>
 		<formatter-maven-plugin.version>2.8.1</formatter-maven-plugin.version>
@@ -124,14 +125,13 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>flatten-maven-plugin</artifactId>
-					<version>1.1.0</version>
+					<version>${flatten-maven-plugin.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
 
 		<plugins>
-			<!-- NOTE Needed to make the ${revision} property work when building a specific Maven module only instead
-						of the whole project via the root POM. -->
+			<!-- NOTE Needed to make the ${revision} property work when building a specific Maven module only instead of the whole project via the root POM. -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>flatten-maven-plugin</artifactId>
