@@ -159,6 +159,7 @@
 						<arg>-Xlint:all</arg>
 						<arg>-parameters</arg>
 					</compilerArgs>
+					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
 			<plugin>
