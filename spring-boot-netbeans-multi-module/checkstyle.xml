@@ -6,7 +6,7 @@
 	<module name="TreeWalker">	
 		<module name="SuppressWarningsHolder" />
 			
-		<module name="CyclomaticComplexity">
-		</module>
+		<module name="CyclomaticComplexity"></module>
+		<module name="JavaNCSS"></module>
 	</module>
 </module>

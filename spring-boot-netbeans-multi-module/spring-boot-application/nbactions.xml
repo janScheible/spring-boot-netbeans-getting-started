@@ -121,6 +121,7 @@
 			<goal>spotbugs:check</goal>
 			<goal>checkstyle:check</goal>
 			<goal>pmd:cpd-check</goal>
+			<goal>pmd:check</goal>
 			<goal>arch-unit:arch-test</goal>
 		</goals>
 	</action>
@@ -146,8 +147,15 @@
 		</goals>
 	</action>
 	<action>
-		<actionName>CUSTOM-PMD Clone Detection</actionName>
-		<displayName>PMD Clone Detection</displayName>
+		<actionName>CUSTOM-PMD</actionName>
+		<displayName>PMD</displayName>
+		<goals>
+			<goal>pmd:check</goal>
+		</goals>
+	</action>	
+	<action>
+		<actionName>CUSTOM-Clone Detection</actionName>
+		<displayName>Clone Detection</displayName>
 		<goals>
 			<goal>pmd:cpd-check</goal>
 		</goals>
