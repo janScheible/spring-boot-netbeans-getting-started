@@ -115,6 +115,31 @@
 		</goals>
 	</action>
 	<action>
+		<actionName>CUSTOM-Test Gap Analysis (Unit Test only)</actionName>
+		<displayName>Test Gap Analysis (Unit Test only)</displayName>
+		<goals>
+			<goal>com.scheible.testgapanalysis:test-gap-analysis-maven-plugin:1.0.0:clean-jacoco-reports</goal>
+			<goal>jacoco:prepare-agent</goal>
+			<goal>surefire:test</goal>
+			<goal>jacoco:report</goal>
+			<goal>com.scheible.testgapanalysis:test-gap-analysis-maven-plugin:1.0.0:perform</goal>
+		</goals>
+	</action>		
+	<action>
+		<actionName>CUSTOM-Test Gap Analysis</actionName>
+		<displayName>Test Gap Analysis</displayName>
+		<goals>
+			<goal>com.scheible.testgapanalysis:test-gap-analysis-maven-plugin:1.0.0:clean-jacoco-reports</goal>
+			<goal>jacoco:prepare-agent</goal>
+			<goal>surefire:test</goal>
+			<goal>jacoco:prepare-agent-integration</goal>
+			<goal>failsafe:integration-test</goal>
+			<goal>jacoco:report</goal>
+			<goal>jacoco:report-integration</goal>
+			<goal>com.scheible.testgapanalysis:test-gap-analysis-maven-plugin:1.0.0:perform</goal>
+		</goals>
+	</action>	
+	<action>
 		<actionName>CUSTOM-Static Code Analysis</actionName>
 		<displayName>Static Code Analysis</displayName>
 		<goals>

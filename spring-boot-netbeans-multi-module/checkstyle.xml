@@ -8,5 +8,9 @@
 			
 		<module name="CyclomaticComplexity"></module>
 		<module name="JavaNCSS"></module>
+		<module name="ModifierOrder"/>
+		<module name="ConstantName">
+			<property name="format" value="^(logger|[A-Z][A-Z0-9]*(_[A-Z0-9]+)*)$"/>
+		</module>
 	</module>
 </module>

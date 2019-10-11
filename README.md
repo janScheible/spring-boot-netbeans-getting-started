@@ -23,10 +23,12 @@ The profiles don't end up in the actual POM.
   - **[Full Build]** a full `clean install` with verification
   - **[Format Code]** `formatter:format` according to `eclipse-formatter-config.xml` and `impsort:sort`  
   - **[Integration Test]** `failsafe:integration-test`
+  - **[Test Gap Analysis (Unit Test only)]** `test-gap-analysis:perform` with unit tests only
+  - **[Test Gap Analysis]** `test-gap-analysis:perform` with unit and integration tests 
   - **[Static Code Analysis]** `spotbugs:check`, `checkstyle:check`, `pmd:check`, `pmd:cpd-check` and `arch-unit:arch-test`
   - **[SpotBugs]** `spotbugs:check`
   - **[SpotBugs GUI]** `spotbugs:gui`
-  - **[Checkstyle]** `checkstyle:check` for metric checking  ([Cyclomatic Complexity](https://checkstyle.org/config_metrics.html#CyclomaticComplexity) and [NCSS](https://checkstyle.org/config_metrics.html#JavaNCSS))
+  - **[Checkstyle]** `checkstyle:check` for among others checking the metrics [Cyclomatic Complexity](https://checkstyle.org/config_metrics.html#CyclomaticComplexity) and [NCSS](https://checkstyle.org/config_metrics.html#JavaNCSS)
   - **[PMD]** `pmd:check`
   - **[Clone Detection]** `pmd:cpd-check`
   - **[ArchUnit Maven plugin]** `arch-unit:arch-test` 
@@ -43,3 +45,4 @@ The profiles don't end up in the actual POM.
 1. Netbeans >= 8.2 (`nbactions.xml` tested with 8.2 and 11.1)
 1. `mvn clean install` in `skip-execution-profile/maven-skip-execution-profile-extension` directory of the repository
 1. `mvn clean install` of [Pocketsaw 1.3.2](https://github.com/janScheible/pocketsaw/tree/1.3.2)
+1. **[optional for build]** `mvn clean install` of [Test Gap Analysis 1.0.0](https://github.com/janScheible/test-gap-analysis/tree/1.0.0)

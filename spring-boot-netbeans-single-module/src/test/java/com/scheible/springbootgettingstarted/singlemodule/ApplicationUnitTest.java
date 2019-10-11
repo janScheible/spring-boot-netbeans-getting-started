@@ -8,7 +8,7 @@ import org.junit.Test;
  *
  * @author sj
  */
-public class GettingStartedApplicationTest {
+public class ApplicationUnitTest {
 
 	@Test
 	public void unitTest() {

@@ -1,4 +1,4 @@
-package com.scheible.springbootgettingstarted.multimodule.library;
+package com.scheible.springbootgettingstarted.multimodule.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,7 +8,7 @@ import org.junit.Test;
  *
  * @author sj
  */
-public class LibraryCodeTest {
+public class ApplicationUnitTest {
 
 	@Test
 	public void unitTest() {
