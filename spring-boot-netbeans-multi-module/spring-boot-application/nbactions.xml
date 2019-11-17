@@ -80,6 +80,35 @@
 		</activatedProfiles>
 	</action>
 	<action>
+		<actionName>test.single</actionName>
+		<packagings>
+			<packaging>*</packaging>
+		</packagings>
+		<goals>
+			<goal>surefire:test</goal>
+		</goals>
+		<properties>
+			<test>${packageClassName}</test>
+			<argLine>-Dlogback.root.log.level=INFO</argLine>
+		</properties>
+	</action>
+	<action>
+		<actionName>debug.test.single</actionName>
+		<packagings>
+			<packaging>*</packaging>
+		</packagings>
+		<goals>
+			<goal>surefire:test</goal>
+		</goals>
+		<properties>
+			<test>${packageClassName}</test>
+			<forkMode>once</forkMode>
+			<maven.surefire.debug>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</maven.surefire.debug>
+			<jpda.listen>true</jpda.listen>
+			<argLine>-Dlogback.root.log.level=INFO</argLine>
+		</properties>
+	</action>
+	<action>
 		<actionName>CUSTOM-Full Build</actionName>
 		<displayName>Full Build</displayName>
 		<goals>
