@@ -41,8 +41,8 @@ The profiles don't end up in the actual POM.
   
 ## Prerequisites
 1. recent JDK 8 (also works with Java 11, just set the property `java.version` to `11` to for example use the `var` keyword)
-1. recent Maven (tested with 3.6.1)
+1. recent Maven (tested with 3.6.3)
 1. Netbeans >= 8.2 (`nbactions.xml` tested with 8.2 and 11.1)
 1. `mvn clean install` in `skip-execution-profile/maven-skip-execution-profile-extension` directory of the repository
-1. `mvn clean install` of [Pocketsaw 1.3.2](https://github.com/janScheible/pocketsaw/tree/1.3.2)
+1. `mvn clean install` of [Pocketsaw 1.4.0](https://github.com/janScheible/pocketsaw/tree/1.4.0)
 1. **[optional for build]** `mvn clean install` of [Test Gap Analysis 1.0.0](https://github.com/janScheible/test-gap-analysis/tree/1.0.0)
