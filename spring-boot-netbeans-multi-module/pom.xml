@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.1.RELEASE</version>
+		<version>2.2.6.RELEASE</version>
 	</parent>
 
 	<groupId>com.scheible.springbootgettingstarted.multimodule</groupId>
@@ -27,23 +27,23 @@
 			JDKs to get rid of 'bootstrap class path not set in conjunction with -source 8' warning. -->
 		<java.version>1.8</java.version>
 
-		<pocketsaw.version>1.3.2</pocketsaw.version>
+	<pocketsaw.version>1.4.0</pocketsaw.version>
 		<jcip-annotations.version>1.0</jcip-annotations.version>
-		<spotbugs-annotations.version>3.1.12</spotbugs-annotations.version>
-		<findsecbugs-plugin.version>1.8.0</findsecbugs-plugin.version>
-		<sb-contrib.version>7.4.6</sb-contrib.version>
-		<slf4j.bug-pattern.version>1.5.0</slf4j.bug-pattern.version>
+		<spotbugs-annotations.version>4.0.1</spotbugs-annotations.version>
+		<findsecbugs-plugin.version>1.10.1</findsecbugs-plugin.version>
+		<sb-contrib.version>7.4.7</sb-contrib.version>
+		<slf4j-bug-pattern.version>1.5.0</slf4j-bug-pattern.version>
 
-		<maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
+		<maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
 		<flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
 		<jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
-		<sortpom-maven-plugin.version>2.10.0</sortpom-maven-plugin.version>
-		<formatter-maven-plugin.version>2.10.0</formatter-maven-plugin.version>
-		<impsort-maven-plugin.version>1.3.0</impsort-maven-plugin.version>
-		<spotbugs-maven-plugin.version>3.1.12.2</spotbugs-maven-plugin.version>
-		<maven-pmd-plugin.version>3.12.0</maven-pmd-plugin.version>
-		<maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
-		<arch-unit-maven-plugin.version>2.3.0</arch-unit-maven-plugin.version>
+		<sortpom-maven-plugin.version>2.11.0</sortpom-maven-plugin.version>
+		<formatter-maven-plugin.version>2.11.0</formatter-maven-plugin.version>
+		<impsort-maven-plugin.version>1.3.2</impsort-maven-plugin.version>
+		<spotbugs-maven-plugin.version>4.0.0</spotbugs-maven-plugin.version>
+		<maven-pmd-plugin.version>3.13.0</maven-pmd-plugin.version>
+		<maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
+		<arch-unit-maven-plugin.version>2.4.0</arch-unit-maven-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -251,7 +251,7 @@
 						<plugin>
 							<groupId>jp.skypencil.findbugs.slf4j</groupId>
 							<artifactId>bug-pattern</artifactId>
-							<version>${slf4j.bug-pattern.version}</version>
+							<version>${slf4j-bug-pattern.version}</version>
 						</plugin>
 					</plugins>
 				</configuration>
