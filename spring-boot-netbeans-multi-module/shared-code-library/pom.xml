@@ -14,7 +14,12 @@
 	<packaging>jar</packaging>
 	<name>spring-boot-netbeans-multi-module :: shared-code-library</name>
 
-	<dependencies></dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>

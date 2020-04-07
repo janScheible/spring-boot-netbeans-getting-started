@@ -1,9 +1,9 @@
 package com.scheible.springbootgettingstarted.multimodule.application;
 
 import com.scheible.pocketsaw.api.SubModule;
-import com.scheible.springbootgettingstarted.multimodule.application.ExternalFunctionalities.SharedCodeLibrary;
 import com.scheible.springbootgettingstarted.multimodule.application.ExternalFunctionalities.Slf4j;
 import com.scheible.springbootgettingstarted.multimodule.application.ExternalFunctionalities.SpringFramework;
+import com.scheible.springbootgettingstarted.multimodule.application.SubModules.SharedCodeLibrary;
 
 /**
  *

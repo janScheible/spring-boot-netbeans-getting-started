@@ -2,11 +2,13 @@ package com.scheible.springbootgettingstarted.multimodule.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.scheible.pocketsaw.impl.Pocketsaw;
-import com.scheible.pocketsaw.impl.descriptor.annotation.SpringClasspathScanner;
+import com.scheible.pocketsaw.impl.descriptor.annotation.ClassgraphClasspathScanner;
 
 /**
  *
@@ -18,8 +20,11 @@ public class GettingStartedApplicationSubModulesTest {
 
 	@BeforeClass
 	public static void beforeClass() {
-		result = Pocketsaw
-				.analizeCurrentProject(SpringClasspathScanner.create(GettingStartedApplicationSubModulesTest.class));
+		final String basePackage = Optional.of(GettingStartedApplicationSubModulesTest.class)
+				.map(clazz -> clazz.getPackage().getName())
+				.map(packageName -> packageName.substring(0, packageName.lastIndexOf("."))).get();
+
+		result = Pocketsaw.analizeClasspath(ClassgraphClasspathScanner.create(basePackage));
 	}
 
 	@Test

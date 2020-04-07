@@ -15,8 +15,4 @@ public class ExternalFunctionalities {
 	@ExternalFunctionality(packageMatchPattern = {"org.slf4j.**"})
 	public static class Slf4j {
 	}
-
-	@ExternalFunctionality(packageMatchPattern = {"com.scheible.springbootgettingstarted.multimodule.library.**"})
-	public static class SharedCodeLibrary {
-	}
 }
