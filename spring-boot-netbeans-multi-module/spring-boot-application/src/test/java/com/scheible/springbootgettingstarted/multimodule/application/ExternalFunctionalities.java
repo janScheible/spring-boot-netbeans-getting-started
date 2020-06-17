@@ -8,11 +8,11 @@ import com.scheible.pocketsaw.api.ExternalFunctionality;
  */
 public class ExternalFunctionalities {
 
-	@ExternalFunctionality(packageMatchPattern = {"org.springframework.**"})
+	@ExternalFunctionality(packageMatchPattern = { "org.springframework.**" })
 	public static class SpringFramework {
 	}
 
-	@ExternalFunctionality(packageMatchPattern = {"org.slf4j.**"})
+	@ExternalFunctionality(packageMatchPattern = { "org.slf4j.**" })
 	public static class Slf4j {
 	}
 }

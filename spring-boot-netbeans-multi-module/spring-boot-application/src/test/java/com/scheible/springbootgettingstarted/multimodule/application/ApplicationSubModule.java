@@ -9,7 +9,7 @@ import com.scheible.springbootgettingstarted.multimodule.application.SubModules.
  *
  * @author sj
  */
-@SubModule(uses = {SharedCodeLibrary.class, SpringFramework.class, Slf4j.class})
+@SubModule(uses = { SharedCodeLibrary.class, SpringFramework.class, Slf4j.class })
 public final class ApplicationSubModule {
 
 	private ApplicationSubModule() {

@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@TestPropertySource(properties = {"spring.main.banner-mode=off"})
+@TestPropertySource(properties = { "spring.main.banner-mode=off" })
 public class GettingStartedApplicationIT {
 
 	@Autowired

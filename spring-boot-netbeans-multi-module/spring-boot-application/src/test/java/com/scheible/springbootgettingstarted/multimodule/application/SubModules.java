@@ -10,7 +10,7 @@ import com.scheible.springbootgettingstarted.multimodule.library.LibraryCode;
  */
 public class SubModules {
 
-	@SubModule(basePackageClass = LibraryCode.class, uses = {Slf4j.class})
+	@SubModule(basePackageClass = LibraryCode.class, uses = { Slf4j.class })
 	public static class SharedCodeLibrary {
 	}
 }

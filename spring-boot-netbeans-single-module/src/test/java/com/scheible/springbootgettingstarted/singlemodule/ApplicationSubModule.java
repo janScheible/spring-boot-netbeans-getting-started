@@ -8,7 +8,7 @@ import com.scheible.springbootgettingstarted.singlemodule.ExternalFunctionalitie
  *
  * @author sj
  */
-@SubModule(uses = {SpringFramework.class, Slf4j.class})
+@SubModule(uses = { SpringFramework.class, Slf4j.class })
 public final class ApplicationSubModule {
 
 	private ApplicationSubModule() {
