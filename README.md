@@ -25,6 +25,7 @@ The profiles don't end up in the actual POM.
   - **[Integration Test]** `failsafe:integration-test`
   - **[Test Gap Analysis (Unit Test only)]** `test-gap-analysis:perform` with unit tests only
   - **[Test Gap Analysis]** `test-gap-analysis:perform` with unit and integration tests 
+  - **[Mutation Coverage]** `pitest-maven:mutationCoverage` of unit tests only
   - **[Static Code Analysis]** `spotbugs:check`, `checkstyle:check`, `pmd:check`, `pmd:cpd-check` and `arch-unit:arch-test`
   - **[SpotBugs]** `spotbugs:check`
   - **[SpotBugs GUI]** `spotbugs:gui`

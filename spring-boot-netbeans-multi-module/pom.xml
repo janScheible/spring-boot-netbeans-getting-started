@@ -43,6 +43,8 @@
 		<maven-pmd-plugin.version>3.13.0</maven-pmd-plugin.version>
 		<maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
 		<arch-unit-maven-plugin.version>2.6.2</arch-unit-maven-plugin.version>
+		<pitest-maven.version>1.5.2</pitest-maven.version>
+		<pitest-junit5-plugin.version>0.12</pitest-junit5-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -146,6 +148,11 @@
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>flatten-maven-plugin</artifactId>
 					<version>${flatten-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.pitest</groupId>
+					<artifactId>pitest-maven</artifactId>
+					<version>${pitest-maven.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -364,6 +371,17 @@
 						</preConfiguredRules>
 					</rules>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-junit5-plugin</artifactId>
+						<version>${pitest-junit5-plugin.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

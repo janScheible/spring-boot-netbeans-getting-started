@@ -167,7 +167,14 @@
 			<goal>jacoco:report-integration</goal>
 			<goal>com.scheible.testgapanalysis:test-gap-analysis-maven-plugin:1.0.0:perform</goal>
 		</goals>
-	</action>	
+	</action>
+	<action>
+		<actionName>CUSTOM-Mutation Coverage</actionName>
+		<displayName>Mutation Coverage</displayName>
+		<goals>
+			<goal>org.pitest:pitest-maven:mutationCoverage</goal>
+		</goals>
+	</action>
 	<action>
 		<actionName>CUSTOM-Static Code Analysis</actionName>
 		<displayName>Static Code Analysis</displayName>
