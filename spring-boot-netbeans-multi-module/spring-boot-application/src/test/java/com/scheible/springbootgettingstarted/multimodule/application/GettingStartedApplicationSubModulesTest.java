@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Optional;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.scheible.pocketsaw.impl.Pocketsaw;
 import com.scheible.pocketsaw.impl.descriptor.annotation.ClassgraphClasspathScanner;
@@ -14,12 +14,12 @@ import com.scheible.pocketsaw.impl.descriptor.annotation.ClassgraphClasspathScan
  *
  * @author sj
  */
-public class GettingStartedApplicationSubModulesTest {
+class GettingStartedApplicationSubModulesTest {
 
 	private static Pocketsaw.AnalysisResult result;
 
-	@BeforeClass
-	public static void beforeClass() {
+	@BeforeAll
+	static void beforeClass() {
 		final String basePackage = Optional.of(GettingStartedApplicationSubModulesTest.class)
 				.map(clazz -> clazz.getPackage().getName())
 				.map(packageName -> packageName.substring(0, packageName.lastIndexOf("."))).get();
@@ -28,17 +28,17 @@ public class GettingStartedApplicationSubModulesTest {
 	}
 
 	@Test
-	public void testNoDescriptorCycle() {
+	void testNoDescriptorCycle() {
 		assertThat(result.getAnyDescriptorCycle()).isEmpty();
 	}
 
 	@Test
-	public void testNoCodeCycle() {
+	void testNoCodeCycle() {
 		assertThat(result.getAnyCodeCycle()).isEmpty();
 	}
 
 	@Test
-	public void testNoIllegalCodeDependencies() {
+	void testNoIllegalCodeDependencies() {
 		assertThat(result.getIllegalCodeDependencies()).isEmpty();
 	}
 }

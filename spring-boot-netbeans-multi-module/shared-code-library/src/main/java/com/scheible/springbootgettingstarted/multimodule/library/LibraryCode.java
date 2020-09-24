@@ -11,7 +11,8 @@ public class LibraryCode {
 
 	private static final Logger logger = LoggerFactory.getLogger(LibraryCode.class);
 
-	public void doIt() {
+	public boolean doIt() {
 		logger.info("I did it!");
+		return true;
 	}
 }
