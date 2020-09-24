@@ -23,9 +23,7 @@
 	<properties>
 		<revision>0.2.0-SNAPSHOT</revision>
 
-		<!-- NOTE Uncomment the 'javac-release-argument' profile if you want to stick with java.version=1.8 on newer
-			JDKs to get rid of 'bootstrap class path not set in conjunction with -source 8' warning. -->
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 
 		<pocketsaw.version>1.4.0</pocketsaw.version>
 		<classgraph.version>4.8.65</classgraph.version>
@@ -369,18 +367,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<!--
-		<profile>
-			<id>javac-release-argument</id>
-			<activation>
-				<jdk>[9,)</jdk>
-			</activation>
-			<properties>
-				<maven.compiler.release>8</maven.compiler.release>
-			</properties>
-		</profile>
-		-->
-	</profiles>
 </project>
