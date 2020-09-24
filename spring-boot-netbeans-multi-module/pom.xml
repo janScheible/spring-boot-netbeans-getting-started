@@ -34,7 +34,7 @@
 		<slf4j-bug-pattern.version>1.5.0</slf4j-bug-pattern.version>
 
 		<maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
-		<flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
+		<flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
 		<jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
 		<sortpom-maven-plugin.version>2.12.0</sortpom-maven-plugin.version>
 		<formatter-maven-plugin.version>2.12.2</formatter-maven-plugin.version>
