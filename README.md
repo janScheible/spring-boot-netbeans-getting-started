@@ -47,4 +47,4 @@ The profiles don't end up in the actual POM.
 1. `mvn clean install` in `skip-execution-profile/maven-skip-execution-profile-extension` directory of the repository
 1. `mvn clean install` of [Pocketsaw 1.4.0](https://github.com/janScheible/pocketsaw/tree/1.4.0)
 1. **[optional]** [External Code Formatters for NetBeans](https://funfried.github.io/externalcodeformatter_for_netbeans/) plugin >= 1.14.0 to use the Eclipse Formatter directly in the IDE
-1. **[optional]** `mvn clean install` of [Test Gap Analysis 1.0.0](https://github.com/janScheible/test-gap-analysis/tree/1.0.0)
+1. **[optional]** `mvn clean install` of [Test Gap Analysis 1.1.1](https://github.com/janScheible/test-gap-analysis/tree/1.1.1)
