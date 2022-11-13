@@ -14,22 +14,14 @@
 	<packaging>jar</packaging>
 	<name>spring-boot-netbeans-multi-module :: shared-code-library</name>
 
+	<properties>
+		<multiModuleRootRelativeUp>..</multiModuleRootRelativeUp>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.github.spotbugs</groupId>
-				<artifactId>spotbugs-maven-plugin</artifactId>
-				<configuration>
-					<excludeFilterFile>${project.basedir}/spotbugs-exclude.xml</excludeFilterFile>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

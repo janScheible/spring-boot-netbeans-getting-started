@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Plugin;
@@ -26,7 +28,7 @@ import org.codehaus.plexus.logging.Logger;
  */
 @Component(role = ModelProcessor.class)
 public class SkipExecutionProfileModelProcessor implements ModelProcessor {
-
+	
 	private static final String DEFAULT_GROUP_ID = "org.apache.maven.plugins";
 	private static final String[] STRING_ARRAY_PROTOTYPE = new String[0];
 
@@ -85,21 +87,25 @@ public class SkipExecutionProfileModelProcessor implements ModelProcessor {
 	}
 
 	private Model addProfile(final Model model) {
-		createProfile(model, "skip-compilation-and-resources").ifPresent(profile -> {
-			createSkipExecutionPlugin(profile, DEFAULT_GROUP_ID, "maven-resources-plugin",
+		getOrCreateProfile(model, "skip-compilation-and-resources", profile -> {
+			createSkipPluginExecution(profile, DEFAULT_GROUP_ID, "maven-resources-plugin",
 					"default-resources", "default-testResources");
-			createSkipExecutionPlugin(profile, DEFAULT_GROUP_ID, "maven-compiler-plugin",
+			createSkipPluginExecution(profile, DEFAULT_GROUP_ID, "maven-compiler-plugin",
 					"default-compile", "default-testCompile");
 		});
 
-		createProfile(model, "skip-unit-tests").ifPresent(profile -> {
-			createSkipExecutionPlugin(profile, DEFAULT_GROUP_ID, "maven-surefire-plugin", "default-test");
+		getOrCreateProfile(model, "skip-unit-tests", profile -> {
+			createSkipPluginExecution(profile, DEFAULT_GROUP_ID, "maven-surefire-plugin", "default-test");
 		});
 
-		createProfile(model, "skip-all-but-compilation-and-resources-and-unit-tests").ifPresent(profile -> {
+		getOrCreateProfile(model, "skip-flattening", profile -> {
+			createSkipPluginExecution(profile, "org.codehaus.mojo", "flatten-maven-plugin", "default");
+		});
+
+		getOrCreateProfile(model, "skip-all-but-compilation-and-resources-and-unit-tests", profile -> {
 			for (Map.Entry<SkipExecutionConfiguration.Plugin, Set<String>> pluginExecutionToSkip
 					: skipExecutionConfiguration.getPluginExecutionsIds().entrySet()) {
-				createSkipExecutionPlugin(profile, pluginExecutionToSkip.getKey().getGroupId(),
+				createSkipPluginExecution(profile, pluginExecutionToSkip.getKey().getGroupId(),
 						pluginExecutionToSkip.getKey().getArtifactId(),
 						pluginExecutionToSkip.getValue().toArray(STRING_ARRAY_PROTOTYPE));
 			}
@@ -108,7 +114,7 @@ public class SkipExecutionProfileModelProcessor implements ModelProcessor {
 		return model;
 	}
 
-	private Optional<Profile> createProfile(Model model, String name) {
+	private void getOrCreateProfile(Model model, String name, Consumer<Profile> profileConsumer) {
 		final Profile profile = model.getProfiles().stream().filter(p -> name.equals(p.getId())).findFirst().orElseGet(() -> {
 			Profile p = new Profile();
 			p.setId(name);
@@ -120,15 +126,10 @@ public class SkipExecutionProfileModelProcessor implements ModelProcessor {
 			profile.setBuild(new Build());
 		}
 
-		if (!profile.getBuild().getPlugins().isEmpty()) {
-			logger.warn("Profile '" + name + "' has already plugins defined! Skipping...");
-			return Optional.empty();
-		}
-
-		return Optional.of(profile);
+		profileConsumer.accept(profile);
 	}
 
-	private void createSkipExecutionPlugin(final Profile profile, final String groupId, final String artifactId,
+	private void createSkipPluginExecution(final Profile profile, final String groupId, final String artifactId,
 			final String... neverExecutionIds) {
 		final Plugin plugin = new Plugin();
 		plugin.setGroupId(groupId);
@@ -141,6 +142,29 @@ public class SkipExecutionProfileModelProcessor implements ModelProcessor {
 			pluginExecution.setPhase("never");
 		}
 
-		profile.getBuild().getPlugins().add(plugin);
+		final int pluginIndex = profile.getBuild().getPlugins().indexOf(plugin);
+		final boolean skipPluginExecutionAlreadyExists = pluginIndex >= 0;
+		if(skipPluginExecutionAlreadyExists) {
+			final Plugin existingPlugin = profile.getBuild().getPlugins().get(pluginIndex);
+			
+			final Set<String> pluginExecutionIds = existingPlugin.getExecutionsAsMap().keySet();
+			pluginExecutionIds.removeAll(Arrays.asList(neverExecutionIds));
+			final boolean neverExecutionIdsMatch = pluginExecutionIds.isEmpty();
+			
+			if(neverExecutionIdsMatch) {
+				final boolean phaseIsAlwaysNever = existingPlugin.getExecutionsAsMap().values().stream()
+						.map(PluginExecution::getPhase).filter(phase -> !"never".equals(phase)).count() == 0;
+				if(phaseIsAlwaysNever) {
+					// skip plugin execution already exists
+					return;
+				}
+			}
+		}
+
+		if(!skipPluginExecutionAlreadyExists) {
+			profile.getBuild().getPlugins().add(plugin);
+		} else {
+			logger.warn("Skip plugin execution for '" + plugin.getKey() + "' was already there but is different!");		
+		}
 	}
 }

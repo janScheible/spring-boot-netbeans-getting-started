@@ -5,7 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>3.0.0-RC2</version>
+		<relativePath></relativePath>
 	</parent>
 
 	<groupId>com.scheible.springbootgettingstarted.multimodule</groupId>
@@ -16,40 +17,57 @@
 	<name>spring-boot-netbeans-multi-module</name>
 
 	<modules>
-		<module>spring-boot-application</module>
 		<module>shared-code-library</module>
+		<module>spring-boot-application</module>
 	</modules>
 
 	<properties>
-		<revision>0.2.0-SNAPSHOT</revision>
+		<revision>0.3.0-SNAPSHOT</revision>
 
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 
-		<pocketsaw.version>1.4.0</pocketsaw.version>
+		<either.java.version>2.9.0</either.java.version>
+
+		<pocketsaw.version>1.5.1</pocketsaw.version>
 		<classgraph.version>4.8.65</classgraph.version>
+		<archunit.version>1.0.0</archunit.version>
 		<jcip-annotations.version>1.0</jcip-annotations.version>
-		<spotbugs.version>4.1.2</spotbugs.version>
-		<findsecbugs-plugin.version>1.10.1</findsecbugs-plugin.version>
-		<sb-contrib.version>7.4.7</sb-contrib.version>
-		<slf4j-bug-pattern.version>1.5.0</slf4j-bug-pattern.version>
-		<pmd.version>6.29.0</pmd.version>
 
-		<maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+		<!-- Some config files are only stored in the root of the multi-module project but must be referenced in the
+			sub-modules. This property must be set accordingly:
+			- to '..' for first level child modules 
+			- to '../..' for second level child modules. 
+			- and so on... -->
+		<multiModuleRootRelativeUp>.</multiModuleRootRelativeUp>
+
+		<maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
 		<flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
-		<jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
-		<sortpom-maven-plugin.version>2.12.0</sortpom-maven-plugin.version>
-		<formatter-maven-plugin.version>2.12.2</formatter-maven-plugin.version>
-		<impsort-maven-plugin.version>1.4.1</impsort-maven-plugin.version>
-		<spotbugs-maven-plugin.version>4.0.4</spotbugs-maven-plugin.version>
-		<maven-pmd-plugin.version>3.13.0</maven-pmd-plugin.version>
-		<maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
-		<arch-unit-maven-plugin.version>2.6.2</arch-unit-maven-plugin.version>
-		<pitest-maven.version>1.5.2</pitest-maven.version>
-		<pitest-junit5-plugin.version>0.12</pitest-junit5-plugin.version>
+		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+		<sortpom-maven-plugin.version>3.2.0</sortpom-maven-plugin.version>
+		<formatter-maven-plugin.version>2.21.0</formatter-maven-plugin.version>
+		<impsort-maven-plugin.version>1.7.0</impsort-maven-plugin.version>
+		<spotbugs-maven-plugin.version>4.7.3.0</spotbugs-maven-plugin.version>
+		<maven-pmd-plugin.version>3.19.0</maven-pmd-plugin.version>
+		<maven-checkstyle-plugin.version>3.2.0</maven-checkstyle-plugin.version>
+		<archunit-maven-plugin.version>3.0.0</archunit-maven-plugin.version>
+		<pitest-maven.version>1.9.9</pitest-maven.version>
+		<pitest-junit5-plugin.version>1.1.0</pitest-junit5-plugin.version>
+
+		<spotbugs.version>4.7.3</spotbugs.version>
+		<find-security-bugs.version>1.12.0</find-security-bugs.version>
+		<slf4j-bug-pattern.version>1.5.0</slf4j-bug-pattern.version>
+		<pmd.version>6.51.0</pmd.version>
+		<checksytle.version>10.4</checksytle.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.spencerwi</groupId>
+				<artifactId>Either.java</artifactId>
+				<version>${either.java.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>net.jcip</groupId>
 				<artifactId>jcip-annotations</artifactId>
@@ -70,10 +88,25 @@
 				<artifactId>classgraph</artifactId>
 				<version>${classgraph.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.tngtech.archunit</groupId>
+				<artifactId>archunit</artifactId>
+				<version>${archunit.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.tngtech.archunit</groupId>
+				<artifactId>archunit-junit5</artifactId>
+				<version>${archunit.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.spencerwi</groupId>
+			<artifactId>Either.java</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -90,11 +123,49 @@
 			<artifactId>classgraph</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.tngtech.archunit</groupId>
+			<artifactId>archunit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.tngtech.archunit</groupId>
+			<artifactId>archunit-junit5</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
+
+	<!-- TODO Has to be removed as soon as Spring Boot 3.0 is finally released. -->
+	<repositories>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>flatten-maven-plugin</artifactId>
+					<version>${flatten-maven-plugin.version}</version>
+				</plugin>
 				<plugin>
 					<artifactId>maven-enforcer-plugin</artifactId>
 					<version>${maven-enforcer-plugin.version}</version>
@@ -165,13 +236,9 @@
 				<plugin>
 					<groupId>com.societegenerale.commons</groupId>
 					<artifactId>arch-unit-maven-plugin</artifactId>
-					<version>${arch-unit-maven-plugin.version}</version>
+					<version>${archunit-maven-plugin.version}</version>
 				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>flatten-maven-plugin</artifactId>
-					<version>${flatten-maven-plugin.version}</version>
-				</plugin>
+
 				<plugin>
 					<groupId>org.pitest</groupId>
 					<artifactId>pitest-maven</artifactId>
@@ -181,33 +248,11 @@
 		</pluginManagement>
 
 		<plugins>
-			<!-- NOTE Needed to make the ${revision} property work when building a specific Maven module only instead of the whole project via the root POM. -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>flatten-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>flatten</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.basedir}/target</outputDirectory>
-							<updatePomFile>true</updatePomFile>
-							<flattenMode>oss</flattenMode>
-						</configuration>
-					</execution>
-				</executions>
-				<configuration>
-					<updatePomFile>true</updatePomFile>
-				</configuration>
-			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<compilerArgs>
 						<arg>-Xlint:all</arg>
-						<arg>-parameters</arg>
 					</compilerArgs>
 					<showWarnings>true</showWarnings>
 				</configuration>
@@ -219,116 +264,29 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>com.github.ekryd.sortpom</groupId>
-				<artifactId>sortpom-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<keepBlankLines>true</keepBlankLines>
-					<nrOfIndentSpace>-1</nrOfIndentSpace>
-					<createBackupFile>false</createBackupFile>
-					<verifyFail>Stop</verifyFail>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>net.revelc.code.formatter</groupId>
-				<artifactId>formatter-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>validate</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<configFile>${maven.multiModuleProjectDirectory}/eclipse-formatter-config.xml</configFile>
-					<lineEnding>KEEP</lineEnding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>net.revelc.code</groupId>
-				<artifactId>impsort-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<removeUnused>true</removeUnused>
-					<groups>java.,javax.,org.,com.</groups>
-					<staticGroups>java,*</staticGroups>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.github.spotbugs</groupId>
-				<artifactId>spotbugs-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<plugins>
-						<plugin>
-							<groupId>com.h3xstream.findsecbugs</groupId>
-							<artifactId>findsecbugs-plugin</artifactId>
-							<version>${findsecbugs-plugin.version}</version>
-						</plugin>
-						<plugin>
-							<groupId>com.mebigfatguy.sb-contrib</groupId>
-							<artifactId>sb-contrib</artifactId>
-							<version>${sb-contrib.version}</version>
-						</plugin>
-						<plugin>
-							<groupId>jp.skypencil.findbugs.slf4j</groupId>
-							<artifactId>bug-pattern</artifactId>
-							<version>${slf4j-bug-pattern.version}</version>
-						</plugin>
-					</plugins>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<configLocation>${maven.multiModuleProjectDirectory}/checkstyle.xml</configLocation>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-							<goal>prepare-agent-integration</goal>
-							<goal>report</goal>
-							<goal>report-integration</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<configuration>
 					<trimStackTrace>false</trimStackTrace>
 				</configuration>
+			</plugin>
+
+			<!-- NOTE Needed to make sure that the ${revision} property is resolved for the maven-install-plugin. -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<configuration>
+					<outputDirectory>${project.basedir}/target</outputDirectory>
+					<updatePomFile>true</updatePomFile>
+					<flattenMode>resolveCiFriendliesOnly</flattenMode>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+						<phase>process-resources</phase>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-enforcer-plugin</artifactId>
@@ -347,7 +305,105 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+							<goal>prepare-agent-integration</goal>
+							<goal>report</goal>
+							<goal>report-integration</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.github.ekryd.sortpom</groupId>
+				<artifactId>sortpom-maven-plugin</artifactId>
+				<configuration>
+					<keepBlankLines>true</keepBlankLines>
+					<nrOfIndentSpace>-1</nrOfIndentSpace>
+					<createBackupFile>false</createBackupFile>
+					<verifyFail>Stop</verifyFail>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>net.revelc.code.formatter</groupId>
+				<artifactId>formatter-maven-plugin</artifactId>
+				<configuration>
+					<configFile>${project.basedir}/${multiModuleRootRelativeUp}/eclipse-formatter-config.xml</configFile>
+					<lineEnding>KEEP</lineEnding>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>validate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>net.revelc.code</groupId>
+				<artifactId>impsort-maven-plugin</artifactId>
+				<configuration>
+					<removeUnused>true</removeUnused>
+					<groups>java.,javax.,org.,com.</groups>
+					<staticGroups>java,*</staticGroups>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<configuration>
+					<plugins>
+						<plugin>
+							<groupId>com.h3xstream.findsecbugs</groupId>
+							<artifactId>findsecbugs-plugin</artifactId>
+							<version>${find-security-bugs.version}</version>
+						</plugin>
+						<plugin>
+							<groupId>jp.skypencil.findbugs.slf4j</groupId>
+							<artifactId>bug-pattern</artifactId>
+							<version>${slf4j-bug-pattern.version}</version>
+						</plugin>
+					</plugins>
+					<configuration>
+						<excludeFilterFile>${project.basedir}/spotbugs-exclude.xml</excludeFilterFile>
+					</configuration>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<linkXRef>false</linkXRef>
+					<rulesets>
+						<ruleset>${project.basedir}/${multiModuleRootRelativeUp}/pmd-ruleset.xml</ruleset>
+					</rulesets>
+					<printFailingErrors>true</printFailingErrors>
+					<analysisCache>true</analysisCache>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
@@ -356,27 +412,31 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
 				<configuration>
-					<linkXRef>false</linkXRef>
-					<rulesets>
-						<ruleset>/rulesets/java/maven-pmd-plugin-default.xml</ruleset>
-						<ruleset>${maven.multiModuleProjectDirectory}/pmd-ruleset.xml</ruleset>
-					</rulesets>
-					<printFailingErrors>true</printFailingErrors>
+					<configLocation>${project.basedir}/${multiModuleRootRelativeUp}/checkstyle.xml</configLocation>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>${checksytle.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>com.societegenerale.commons</groupId>
 				<artifactId>arch-unit-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>default</id>
-						<phase>test</phase>
-						<goals>
-							<goal>arch-test</goal>
-						</goals>
-					</execution>
-				</executions>
 				<configuration>
 					<projectPath>${project.basedir}/target</projectPath>
 					<rules>
@@ -394,6 +454,22 @@
 						</preConfiguredRules>
 					</rules>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.tngtech.archunit</groupId>
+						<artifactId>archunit</artifactId>
+						<version>${archunit.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>arch-test</goal>
+						</goals>
+						<phase>test</phase>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.pitest</groupId>

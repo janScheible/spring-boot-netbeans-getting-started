@@ -14,6 +14,10 @@
 	<packaging>jar</packaging>
 	<name>spring-boot-netbeans-multi-module :: spring-boot-application</name>
 
+	<properties>
+		<multiModuleRootRelativeUp>..</multiModuleRootRelativeUp>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.scheible.springbootgettingstarted.multimodule.library</groupId>
@@ -56,8 +60,11 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>pl.project13.maven</groupId>
-				<artifactId>git-commit-id-plugin</artifactId>
+				<groupId>io.github.git-commit-id</groupId>
+				<artifactId>git-commit-id-maven-plugin</artifactId>
+				<configuration>
+					<verbose>false</verbose>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
