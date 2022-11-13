@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author sj
  */
 @SpringBootApplication
+@SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 public class GettingStartedApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(GettingStartedApplication.class);
