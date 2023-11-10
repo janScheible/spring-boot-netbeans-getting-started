@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * @author sj
  */
 public class LibraryCode {
@@ -15,4 +14,5 @@ public class LibraryCode {
 		logger.info("I did it!");
 		return true;
 	}
+
 }

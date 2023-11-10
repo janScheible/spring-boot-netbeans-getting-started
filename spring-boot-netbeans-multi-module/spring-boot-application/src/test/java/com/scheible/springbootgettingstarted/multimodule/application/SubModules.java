@@ -5,12 +5,13 @@ import com.scheible.springbootgettingstarted.multimodule.application.ExternalFun
 import com.scheible.springbootgettingstarted.multimodule.library.LibraryCode;
 
 /**
- *
  * @author sj
  */
 public class SubModules {
 
 	@SubModule(basePackageClass = LibraryCode.class, uses = { Slf4j.class })
 	public static class SharedCodeLibrary {
+
 	}
+
 }

@@ -1,17 +1,15 @@
 package com.scheible.springbootgettingstarted.multimodule.application;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.Optional;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 
 import com.scheible.pocketsaw.impl.Pocketsaw;
 import com.scheible.pocketsaw.impl.descriptor.annotation.ClassgraphClasspathScanner;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- *
  * @author sj
  */
 class GettingStartedApplicationSubModulesTest {
@@ -21,8 +19,9 @@ class GettingStartedApplicationSubModulesTest {
 	@BeforeAll
 	static void beforeClass() {
 		final String basePackage = Optional.of(GettingStartedApplicationSubModulesTest.class)
-				.map(clazz -> clazz.getPackage().getName())
-				.map(packageName -> packageName.substring(0, packageName.lastIndexOf("."))).get();
+			.map(clazz -> clazz.getPackage().getName())
+			.map(packageName -> packageName.substring(0, packageName.lastIndexOf(".")))
+			.get();
 
 		result = Pocketsaw.analizeClasspath(ClassgraphClasspathScanner.create(basePackage));
 	}
@@ -41,4 +40,5 @@ class GettingStartedApplicationSubModulesTest {
 	void testNoIllegalCodeDependencies() {
 		assertThat(result.getIllegalCodeDependencies()).isEmpty();
 	}
+
 }

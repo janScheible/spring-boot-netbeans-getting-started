@@ -15,10 +15,6 @@
 	<packaging>jar</packaging>
 	<name>spring-boot-netbeans-multi-module :: spring-boot-application</name>
 
-	<properties>
-		<multiModuleRootRelativeUp>..</multiModuleRootRelativeUp>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.scheible.springbootgettingstarted.multimodule.library</groupId>

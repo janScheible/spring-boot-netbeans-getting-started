@@ -171,7 +171,7 @@
 		<displayName>Format Code</displayName>
 		<goals>
 			<goal>impsort:sort</goal>
-			<goal>formatter:format</goal>
+			<goal>spring-javaformat:apply</goal>
 		</goals>
 	</action>
 	<action>
@@ -179,10 +179,10 @@
 		<displayName>Format Code</displayName>
 		<goals>
 			<goal>impsort:sort</goal>
-			<goal>formatter:format</goal>
+			<goal>spring-javaformat:apply</goal>
 		</goals>
 		<properties>
-			<formatter.includes>**/${classNameWithExtension}</formatter.includes>
+			<spring-javaformat.includes>**/${classNameWithExtension}</spring-javaformat.includes>
 			<impsort.includes>**/${classNameWithExtension}</impsort.includes>
 		</properties>
 	</action> 

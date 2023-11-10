@@ -1,14 +1,12 @@
 package com.scheible.springbootgettingstarted.multimodule.application;
 
+import com.scheible.springbootgettingstarted.multimodule.library.LibraryCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.scheible.springbootgettingstarted.multimodule.library.LibraryCode;
-
 /**
- *
  * @author sj
  */
 @SpringBootApplication
@@ -22,4 +20,5 @@ public class GettingStartedApplication {
 		logger.info("Running the application...");
 		SpringApplication.run(GettingStartedApplication.class, args);
 	}
+
 }

@@ -27,6 +27,12 @@
 		<revision>0.3.0-SNAPSHOT</revision>
 
 		<java.version>17</java.version>
+		<netbeans.hint.jdkPlatform>JDK_17</netbeans.hint.jdkPlatform>
+		
+		<!-- Config for https://funfried.github.io/externalcodeformatter_for_netbeans/ to match Spring Java Format. -->
+		<de-funfried-netbeans-plugins-externalcodeformatter.useProjectSettings>true</de-funfried-netbeans-plugins-externalcodeformatter.useProjectSettings>
+		<de-funfried-netbeans-plugins-externalcodeformatter.enabledFormatter_2e_JAVA>spring-java-formatter</de-funfried-netbeans-plugins-externalcodeformatter.enabledFormatter_2e_JAVA>
+		<de-funfried-netbeans-plugins-externalcodeformatter.spring-linefeed>\n</de-funfried-netbeans-plugins-externalcodeformatter.spring-linefeed>
 
 		<either.java.version>2.9.0</either.java.version>
 
@@ -34,18 +40,11 @@
 		<classgraph.version>4.8.65</classgraph.version>
 		<archunit.version>1.0.0</archunit.version>
 
-		<!-- Some config files are only stored in the root of the multi-module project but must be referenced in the
-			sub-modules. This property must be set accordingly:
-			- to '..' for first level child modules 
-			- to '../..' for second level child modules. 
-			- and so on... -->
-		<multiModuleRootRelativeUp>.</multiModuleRootRelativeUp>
-
 		<maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
 		<flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
 		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
 		<sortpom-maven-plugin.version>3.2.0</sortpom-maven-plugin.version>
-		<formatter-maven-plugin.version>2.21.0</formatter-maven-plugin.version>
+		<spring-javaformat-maven-plugin.version>0.0.39</spring-javaformat-maven-plugin.version>
 		<impsort-maven-plugin.version>1.9.0</impsort-maven-plugin.version>
 		<maven-pmd-plugin.version>3.19.0</maven-pmd-plugin.version>
 		<maven-checkstyle-plugin.version>3.2.0</maven-checkstyle-plugin.version>
@@ -170,9 +169,9 @@
 					<version>${sortpom-maven-plugin.version}</version>
 				</plugin>
 				<plugin>
-					<groupId>net.revelc.code.formatter</groupId>
-					<artifactId>formatter-maven-plugin</artifactId>
-					<version>${formatter-maven-plugin.version}</version>
+					<groupId>io.spring.javaformat</groupId>
+					<artifactId>spring-javaformat-maven-plugin</artifactId>
+					<version>${spring-javaformat-maven-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>net.revelc.code</groupId>
@@ -308,11 +307,10 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>net.revelc.code.formatter</groupId>
-				<artifactId>formatter-maven-plugin</artifactId>
+				<groupId>io.spring.javaformat</groupId>
+				<artifactId>spring-javaformat-maven-plugin</artifactId>
 				<configuration>
-					<configFile>${project.basedir}/${multiModuleRootRelativeUp}/eclipse-formatter-config.xml</configFile>
-					<lineEnding>KEEP</lineEnding>
+					<lineSeparator>LF</lineSeparator>
 				</configuration>
 				<executions>
 					<execution>
@@ -326,9 +324,9 @@
 				<groupId>net.revelc.code</groupId>
 				<artifactId>impsort-maven-plugin</artifactId>
 				<configuration>
-					<removeUnused>true</removeUnused>
-					<groups>java.,javax.,org.,com.</groups>
-					<staticGroups>java,*</staticGroups>
+					<lineEnding>LF</lineEnding>
+					<groups>jakarta.,java.,javax.,*</groups>
+					<staticAfter>true</staticAfter>
 				</configuration>
 				<executions>
 					<execution>

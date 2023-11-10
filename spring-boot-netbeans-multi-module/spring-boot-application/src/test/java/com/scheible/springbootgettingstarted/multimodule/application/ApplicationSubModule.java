@@ -6,7 +6,6 @@ import com.scheible.springbootgettingstarted.multimodule.application.ExternalFun
 import com.scheible.springbootgettingstarted.multimodule.application.SubModules.SharedCodeLibrary;
 
 /**
- *
  * @author sj
  */
 @SubModule(uses = { SharedCodeLibrary.class, SpringFramework.class, Slf4j.class })
@@ -14,4 +13,5 @@ public final class ApplicationSubModule {
 
 	private ApplicationSubModule() {
 	}
+
 }
