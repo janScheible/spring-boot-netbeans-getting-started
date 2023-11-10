@@ -229,25 +229,12 @@
 		<actionName>CUSTOM-Static Code Analysis</actionName>
 		<displayName>Static Code Analysis</displayName>
 		<goals>
-			<goal>spotbugs:check</goal>
 			<goal>checkstyle:check</goal>
 			<goal>pmd:cpd-check</goal>
 			<goal>pmd:check</goal>
 			<goal>arch-unit:arch-test</goal>
-		</goals>
-	</action>
-	<action>
-		<actionName>CUSTOM-SpotBugs</actionName>
-		<displayName>SpotBugs</displayName>
-		<goals>
-			<goal>spotbugs:check</goal>
-		</goals>
-	</action>
-	<action>
-		<actionName>CUSTOM-SpotBugs GUI</actionName>
-		<displayName>SpotBugs GUI</displayName>
-		<goals>
-			<goal>spotbugs:gui</goal>
+			<goal>de.thetaphi:forbiddenapis:check@check-forbiddenapis</goal>
+			<goal>de.thetaphi:forbiddenapis:check@check-forbidden-test-apis</goal>
 		</goals>
 	</action>
 	<action>
@@ -276,6 +263,14 @@
 		<displayName>ArchUnit Maven plugin</displayName>
 		<goals>
 			<goal>arch-unit:arch-test</goal>
+		</goals>
+	</action>
+	<action>
+		<actionName>CUSTOM-Forbidden API Checker</actionName>
+		<displayName>Forbidden API Checker</displayName>
+		<goals>
+			<goal>de.thetaphi:forbiddenapis:check@check-forbiddenapis</goal>
+			<goal>de.thetaphi:forbiddenapis:check@check-forbidden-test-apis</goal>			
 		</goals>
 	</action>
 	<action>

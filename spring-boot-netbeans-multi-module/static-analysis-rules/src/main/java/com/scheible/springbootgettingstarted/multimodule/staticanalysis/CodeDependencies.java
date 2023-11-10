@@ -1,13 +1,16 @@
-package com.scheible.springbootgettingstarted.multimodule.application;
+package com.scheible.springbootgettingstarted.multimodule.staticanalysis;
 
+import static com.tngtech.archunit.base.DescribedPredicate.not;
+import static com.tngtech.archunit.core.domain.JavaModifier.PUBLIC;
+import static com.tngtech.archunit.core.domain.JavaModifier.STATIC;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 import static com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.slices;
 
+import java.util.List;
+
+import com.tngtech.archunit.base.DescribedPredicate;
 import com.tngtech.archunit.core.domain.Dependency;
 import com.tngtech.archunit.core.domain.JavaClass;
-import com.tngtech.archunit.core.importer.ImportOption.DoNotIncludeTests;
-import com.tngtech.archunit.junit.AnalyzeClasses;
-import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchCondition;
 import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.ConditionEvents;
@@ -19,9 +22,7 @@ import com.tngtech.archunit.library.dependencies.SliceIdentifier;
  *
  * @author sj
  */
-@AnalyzeClasses(packagesOf = CodeDependenciesTest.class, importOptions = DoNotIncludeTests.class)
-public class CodeDependenciesTest {
-
+public class CodeDependencies {
 	private static class SlicePerPackage implements SliceAssignment {
 
 		@Override
@@ -35,8 +36,8 @@ public class CodeDependenciesTest {
 		}
 	}
 
-	@ArchTest
-	static final ArchRule noPackageCyclesRule = slices().assignedFrom(new SlicePerPackage()).should().beFreeOfCycles();
+	public static final ArchRule noPackageCyclesRule = slices().assignedFrom(new SlicePerPackage()).should()
+			.beFreeOfCycles();
 
 	private static class DependOnDescendantPackagesCondition extends ArchCondition<JavaClass> {
 
@@ -61,7 +62,23 @@ public class CodeDependenciesTest {
 		}
 	}
 
-	@ArchTest
-	static final ArchRule packageLayeringRule = noClasses().should(new DependOnDescendantPackagesCondition())
+	public static final ArchRule packageLayeringRule = noClasses().that(not(new MainMethodPredicate()))
+			.should(new DependOnDescendantPackagesCondition()).allowEmptyShould(true)
 			.because("lower packages shouldn't build on higher packages");
+
+	private static class MainMethodPredicate extends DescribedPredicate<JavaClass> {
+
+		MainMethodPredicate() {
+			super("class having a main method");
+		}
+
+		@Override
+		public boolean test(JavaClass input) {
+			return input.getAllMethods().stream()
+					.anyMatch(method -> "main".equals(method.getName()) && method.getModifiers().contains(STATIC)
+							&& method.getModifiers().contains(PUBLIC)
+							&& method.getRawReturnType().getName().equals("void") && method.getRawParameterTypes()
+									.stream().map(JavaClass::getName).toList().equals(List.of("[Ljava.lang.String;")));
+		}
+	}
 }

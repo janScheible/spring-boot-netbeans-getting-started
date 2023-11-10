@@ -21,6 +21,6 @@ class GettingStartedApplicationIT {
 
 	@Test
 	void integrationTest() {
-		assertThat(applicationContext).isNotNull();
+		assertThat(this.applicationContext).isNotNull();
 	}
 }

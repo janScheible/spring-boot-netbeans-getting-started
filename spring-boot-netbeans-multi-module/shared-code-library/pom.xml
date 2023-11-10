@@ -3,9 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.scheible.springbootgettingstarted.multimodule</groupId>
-		<artifactId>spring-boot-netbeans-multi-module</artifactId>
+		<groupId>com.scheible.springbootgettingstarted.multimodule.staticanalysispluginsparent</groupId>
+		<artifactId>static-analysis-plugins-parent</artifactId>
 		<version>${revision}</version>
+		<relativePath>../static-analysis-plugins-parent/pom.xml</relativePath>
 	</parent>
 
 	<groupId>com.scheible.springbootgettingstarted.multimodule.library</groupId>

@@ -3,9 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.scheible.springbootgettingstarted.multimodule</groupId>
-		<artifactId>spring-boot-netbeans-multi-module</artifactId>
+		<groupId>com.scheible.springbootgettingstarted.multimodule.staticanalysispluginsparent</groupId>
+		<artifactId>static-analysis-plugins-parent</artifactId>
 		<version>${revision}</version>
+		<relativePath>../static-analysis-plugins-parent/pom.xml</relativePath>
 	</parent>
 
 	<groupId>com.scheible.springbootgettingstarted.multimodule.application</groupId>
@@ -34,15 +35,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>net.jcip</groupId>
-			<artifactId>jcip-annotations</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.github.spotbugs</groupId>
-			<artifactId>spotbugs-annotations</artifactId>
 		</dependency>
 	</dependencies>
 
