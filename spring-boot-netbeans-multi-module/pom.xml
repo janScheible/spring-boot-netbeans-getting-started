@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.0-RC2</version>
+		<version>3.1.5</version>
 		<relativePath></relativePath>
 	</parent>
 
@@ -24,7 +24,7 @@
 	</modules>
 
 	<properties>
-		<revision>0.3.0-SNAPSHOT</revision>
+		<revision>0.3.1-SNAPSHOT</revision>
 
 		<java.version>17</java.version>
 		<netbeans.hint.jdkPlatform>JDK_17</netbeans.hint.jdkPlatform>
@@ -36,29 +36,36 @@
 
 		<either.java.version>2.9.0</either.java.version>
 
-		<pocketsaw.version>1.5.1</pocketsaw.version>
-		<classgraph.version>4.8.65</classgraph.version>
-		<archunit.version>1.0.0</archunit.version>
+		<pocketsaw.version>1.7.0</pocketsaw.version>
+		<classgraph.version>4.8.164</classgraph.version>
+		<archunit.version>1.2.0</archunit.version>
 
-		<maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
-		<flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
-		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
-		<sortpom-maven-plugin.version>3.2.0</sortpom-maven-plugin.version>
+		<maven-enforcer-plugin.version>3.4.1</maven-enforcer-plugin.version>
+		<flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
+		<jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
+		<sortpom-maven-plugin.version>3.3.0</sortpom-maven-plugin.version>
 		<spring-javaformat-maven-plugin.version>0.0.39</spring-javaformat-maven-plugin.version>
 		<impsort-maven-plugin.version>1.9.0</impsort-maven-plugin.version>
-		<maven-pmd-plugin.version>3.19.0</maven-pmd-plugin.version>
-		<maven-checkstyle-plugin.version>3.2.0</maven-checkstyle-plugin.version>
+		<maven-pmd-plugin.version>3.21.2</maven-pmd-plugin.version>
+		<maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
 		<maven-forbiddenapis-plugin.version>3.5.1</maven-forbiddenapis-plugin.version>
 		<archunit-maven-plugin.version>3.0.0</archunit-maven-plugin.version>
-		<pitest-maven.version>1.9.9</pitest-maven.version>
-		<pitest-junit5-plugin.version>1.1.0</pitest-junit5-plugin.version>
+		<pitest-maven.version>1.15.3</pitest-maven.version>
+		<pitest-junit5-plugin.version>1.2.1</pitest-junit5-plugin.version>
 
-		<pmd.version>6.51.0</pmd.version>
-		<checksytle.version>10.4</checksytle.version>
+		<pmd.version>6.55.0</pmd.version>
+		<checksytle.version>10.12.4</checksytle.version>
+		<spring-javaformat.version>0.0.39</spring-javaformat.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>io.spring.javaformat</groupId>
+				<artifactId>spring-javaformat-checkstyle</artifactId>
+				<version>${spring-javaformat.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>com.spencerwi</groupId>
 				<artifactId>Either.java</artifactId>
@@ -123,28 +130,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<!-- TODO Has to be removed as soon as Spring Boot 3.0 is finally released. -->
-	<repositories>
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</pluginRepository>
-	</pluginRepositories>
 
 	<build>
 		<pluginManagement>
@@ -246,7 +231,7 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>flatten-maven-plugin</artifactId>
 				<configuration>
-					<outputDirectory>${project.basedir}/target</outputDirectory>
+					<outputDirectory>${project.build.directory}</outputDirectory>
 					<updatePomFile>true</updatePomFile>
 					<flattenMode>resolveCiFriendliesOnly</flattenMode>
 				</configuration>
