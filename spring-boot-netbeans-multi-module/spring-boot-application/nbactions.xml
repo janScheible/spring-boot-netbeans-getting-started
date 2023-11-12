@@ -42,7 +42,6 @@
 		</properties>
 		<activatedProfiles>
 			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
-			<activatedProfile>skip-compilation-and-resources</activatedProfile>
 			<activatedProfile>skip-unit-tests</activatedProfile>
 			<activatedProfile>skip-flattening</activatedProfile>
 		</activatedProfiles>
@@ -57,13 +56,9 @@
 		</goals>
 		<properties>
 			<Env.SPRING_OUTPUT_ANSI_ENABLED>always</Env.SPRING_OUTPUT_ANSI_ENABLED>
-			<jpda.listen>true</jpda.listen>
-			<spring-boot.run.jvmArguments>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address}</spring-boot.run.jvmArguments>
-			<Env.SPRING_OUTPUT_ANSI_ENABLED>always</Env.SPRING_OUTPUT_ANSI_ENABLED>
 		</properties>
 		<activatedProfiles>
 			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
-			<activatedProfile>skip-compilation-and-resources</activatedProfile>
 			<activatedProfile>skip-unit-tests</activatedProfile>
 			<activatedProfile>skip-flattening</activatedProfile>
 		</activatedProfiles>
@@ -78,7 +73,6 @@
 		</goals>
 		<activatedProfiles>
 			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
-			<activatedProfile>skip-compilation-and-resources</activatedProfile>
 			<activatedProfile>skip-flattening</activatedProfile>
 		</activatedProfiles>
 	</action>
@@ -88,12 +82,17 @@
 			<packaging>*</packaging>
 		</packagings>
 		<goals>
+			<goal>process-test-classes</goal>
 			<goal>surefire:test</goal>
 		</goals>
 		<properties>
 			<test>${packageClassName}</test>
 			<argLine>-Dlogback.root.log.level=INFO</argLine>
 		</properties>
+		<activatedProfiles>
+			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
+			<activatedProfile>skip-flattening</activatedProfile>
+		</activatedProfiles>
 	</action>
 	<action>
 		<actionName>debug.test.single</actionName>
@@ -101,6 +100,7 @@
 			<packaging>*</packaging>
 		</packagings>
 		<goals>
+			<goal>process-test-classes</goal>
 			<goal>surefire:test</goal>
 		</goals>
 		<properties>
@@ -110,6 +110,10 @@
 			<jpda.listen>true</jpda.listen>
 			<argLine>-Dlogback.root.log.level=INFO</argLine>
 		</properties>
+		<activatedProfiles>
+			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
+			<activatedProfile>skip-flattening</activatedProfile>
+		</activatedProfiles>
 	</action>	
 	<action>
 		<actionName>integration-test.single</actionName>
@@ -117,7 +121,7 @@
 			<packaging>*</packaging>
 		</packagings>
 		<goals>
-			<goal>pre-integration-test</goal>
+			<goal>process-test-classes</goal>
 			<goal>failsafe:integration-test</goal>
 		</goals>
 		<properties>
@@ -128,7 +132,6 @@
 		</properties>
 		<activatedProfiles>
 			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
-			<activatedProfile>skip-compilation-and-resources</activatedProfile>
 			<activatedProfile>skip-flattening</activatedProfile>
 		</activatedProfiles>
 	</action>
@@ -138,7 +141,7 @@
 			<packaging>*</packaging>
 		</packagings>
 		<goals>
-			<goal>pre-integration-test</goal>
+			<goal>process-test-classes</goal>
 			<goal>failsafe:integration-test</goal>
 		</goals>
 		<properties>
@@ -151,7 +154,6 @@
 		</properties>
 		<activatedProfiles>
 			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
-			<activatedProfile>skip-compilation-and-resources</activatedProfile>
 			<activatedProfile>skip-flattening</activatedProfile>
 		</activatedProfiles>
 	</action>	
@@ -162,9 +164,6 @@
 			<goal>clean</goal>
 			<goal>install</goal>
 		</goals>
-		<properties>
-			<gib.buildAll>true</gib.buildAll>
-		</properties>
 	</action>
 	<action>
 		<actionName>CUSTOM-Format Code</actionName>

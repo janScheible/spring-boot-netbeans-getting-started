@@ -28,7 +28,9 @@
 
 		<java.version>17</java.version>
 		<netbeans.hint.jdkPlatform>JDK_17</netbeans.hint.jdkPlatform>
-		
+
+		<netbeans.compile.on.save>none</netbeans.compile.on.save>
+
 		<!-- Config for https://funfried.github.io/externalcodeformatter_for_netbeans/ to match Spring Java Format. -->
 		<de-funfried-netbeans-plugins-externalcodeformatter.useProjectSettings>true</de-funfried-netbeans-plugins-externalcodeformatter.useProjectSettings>
 		<de-funfried-netbeans-plugins-externalcodeformatter.enabledFormatter_2e_JAVA>spring-java-formatter</de-funfried-netbeans-plugins-externalcodeformatter.enabledFormatter_2e_JAVA>
@@ -56,6 +58,9 @@
 		<pmd.version>6.55.0</pmd.version>
 		<checksytle.version>10.12.4</checksytle.version>
 		<spring-javaformat.version>0.0.39</spring-javaformat.version>
+
+		<plexus-compiler-eclipse.version>2.13.0</plexus-compiler-eclipse.version>
+		<org.eclipse.jdt.version>3.35.0</org.eclipse.jdt.version>
 	</properties>
 
 	<dependencyManagement>
@@ -334,4 +339,35 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>eclipse-compiler</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<configuration>
+							<compilerId>eclipse</compilerId>
+							<showWarnings>true</showWarnings>
+							<showDeprecation>true</showDeprecation>
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>org.codehaus.plexus</groupId>
+								<artifactId>plexus-compiler-eclipse</artifactId>
+								<version>${plexus-compiler-eclipse.version}</version>
+							</dependency>
+							<dependency>
+								<groupId>org.eclipse.jdt</groupId>
+								<artifactId>ecj</artifactId>
+								<version>${org.eclipse.jdt.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
