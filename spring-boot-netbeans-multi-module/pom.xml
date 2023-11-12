@@ -57,7 +57,7 @@
 
 		<pmd.version>6.55.0</pmd.version>
 		<checksytle.version>10.12.4</checksytle.version>
-		<spring-javaformat.version>0.0.39</spring-javaformat.version>
+		<spring-javaformat-checkstyle.version>0.0.39</spring-javaformat-checkstyle.version>
 
 		<plexus-compiler-eclipse.version>2.13.0</plexus-compiler-eclipse.version>
 		<org.eclipse.jdt.version>3.35.0</org.eclipse.jdt.version>
@@ -68,7 +68,7 @@
 			<dependency>
 				<groupId>io.spring.javaformat</groupId>
 				<artifactId>spring-javaformat-checkstyle</artifactId>
-				<version>${spring-javaformat.version}</version>
+				<version>${spring-javaformat-checkstyle.version}</version>
 			</dependency>
 
 			<dependency>

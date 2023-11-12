@@ -42,9 +42,7 @@
 		</properties>
 		<activatedProfiles>
 			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
-			<activatedProfile>skip-compilation-and-resources</activatedProfile>
 			<activatedProfile>skip-unit-tests</activatedProfile>
-			<activatedProfile>skip-flattening</activatedProfile>
 		</activatedProfiles>
 	</action>
 	<action>
@@ -57,15 +55,10 @@
 		</goals>
 		<properties>
 			<Env.SPRING_OUTPUT_ANSI_ENABLED>always</Env.SPRING_OUTPUT_ANSI_ENABLED>
-			<jpda.listen>true</jpda.listen>
-			<spring-boot.run.jvmArguments>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address}</spring-boot.run.jvmArguments>
-			<Env.SPRING_OUTPUT_ANSI_ENABLED>always</Env.SPRING_OUTPUT_ANSI_ENABLED>
 		</properties>
 		<activatedProfiles>
 			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
-			<activatedProfile>skip-compilation-and-resources</activatedProfile>
 			<activatedProfile>skip-unit-tests</activatedProfile>
-			<activatedProfile>skip-flattening</activatedProfile>
 		</activatedProfiles>
 	</action>
 	<action>
@@ -78,8 +71,6 @@
 		</goals>
 		<activatedProfiles>
 			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
-			<activatedProfile>skip-compilation-and-resources</activatedProfile>
-			<activatedProfile>skip-flattening</activatedProfile>
 		</activatedProfiles>
 	</action>
 	<action>
@@ -88,12 +79,16 @@
 			<packaging>*</packaging>
 		</packagings>
 		<goals>
+			<goal>process-test-classes</goal>
 			<goal>surefire:test</goal>
 		</goals>
 		<properties>
 			<test>${packageClassName}</test>
 			<argLine>-Dlogback.root.log.level=INFO</argLine>
 		</properties>
+		<activatedProfiles>
+			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
+		</activatedProfiles>
 	</action>
 	<action>
 		<actionName>debug.test.single</actionName>
@@ -101,6 +96,7 @@
 			<packaging>*</packaging>
 		</packagings>
 		<goals>
+			<goal>process-test-classes</goal>
 			<goal>surefire:test</goal>
 		</goals>
 		<properties>
@@ -110,6 +106,9 @@
 			<jpda.listen>true</jpda.listen>
 			<argLine>-Dlogback.root.log.level=INFO</argLine>
 		</properties>
+		<activatedProfiles>
+			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
+		</activatedProfiles>
 	</action>	
 	<action>
 		<actionName>integration-test.single</actionName>
@@ -117,7 +116,7 @@
 			<packaging>*</packaging>
 		</packagings>
 		<goals>
-			<goal>pre-integration-test</goal>
+			<goal>process-test-classes</goal>
 			<goal>failsafe:integration-test</goal>
 		</goals>
 		<properties>
@@ -128,8 +127,6 @@
 		</properties>
 		<activatedProfiles>
 			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
-			<activatedProfile>skip-compilation-and-resources</activatedProfile>
-			<activatedProfile>skip-flattening</activatedProfile>
 		</activatedProfiles>
 	</action>
 	<action>
@@ -138,7 +135,7 @@
 			<packaging>*</packaging>
 		</packagings>
 		<goals>
-			<goal>pre-integration-test</goal>
+			<goal>process-test-classes</goal>
 			<goal>failsafe:integration-test</goal>
 		</goals>
 		<properties>
@@ -151,8 +148,6 @@
 		</properties>
 		<activatedProfiles>
 			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
-			<activatedProfile>skip-compilation-and-resources</activatedProfile>
-			<activatedProfile>skip-flattening</activatedProfile>
 		</activatedProfiles>
 	</action>	
 	<action>
@@ -162,16 +157,13 @@
 			<goal>clean</goal>
 			<goal>install</goal>
 		</goals>
-		<properties>
-			<gib.buildAll>true</gib.buildAll>
-		</properties>
 	</action>
 	<action>
 		<actionName>CUSTOM-Format Code</actionName>
 		<displayName>Format Code</displayName>
 		<goals>
 			<goal>impsort:sort</goal>
-			<goal>formatter:format</goal>
+			<goal>spring-javaformat:apply</goal>
 		</goals>
 	</action>
 	<action>
@@ -179,10 +171,10 @@
 		<displayName>Format Code</displayName>
 		<goals>
 			<goal>impsort:sort</goal>
-			<goal>formatter:format</goal>
+			<goal>spring-javaformat:apply</goal>
 		</goals>
 		<properties>
-			<formatter.includes>**/${classNameWithExtension}</formatter.includes>
+			<spring-javaformat.includes>**/${classNameWithExtension}</spring-javaformat.includes>
 			<impsort.includes>**/${classNameWithExtension}</impsort.includes>
 		</properties>
 	</action> 
@@ -190,8 +182,12 @@
 		<actionName>CUSTOM-Integration Test</actionName>
 		<displayName>Integration Test</displayName>
 		<goals>
+			<goal>process-test-classes</goal>
 			<goal>failsafe:integration-test</goal>
 		</goals>
+		<activatedProfiles>
+			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
+		</activatedProfiles>
 	</action>
 	<action>
 		<actionName>CUSTOM-Test Gap Analysis (Unit Test only)</actionName>
@@ -229,25 +225,11 @@
 		<actionName>CUSTOM-Static Code Analysis</actionName>
 		<displayName>Static Code Analysis</displayName>
 		<goals>
-			<goal>spotbugs:check</goal>
 			<goal>checkstyle:check</goal>
 			<goal>pmd:cpd-check</goal>
 			<goal>pmd:check</goal>
-			<goal>arch-unit:arch-test</goal>
-		</goals>
-	</action>
-	<action>
-		<actionName>CUSTOM-SpotBugs</actionName>
-		<displayName>SpotBugs</displayName>
-		<goals>
-			<goal>spotbugs:check</goal>
-		</goals>
-	</action>
-	<action>
-		<actionName>CUSTOM-SpotBugs GUI</actionName>
-		<displayName>SpotBugs GUI</displayName>
-		<goals>
-			<goal>spotbugs:gui</goal>
+			<goal>de.thetaphi:forbiddenapis:check@check-forbiddenapis</goal>
+			<goal>de.thetaphi:forbiddenapis:check@check-forbidden-test-apis</goal>
 		</goals>
 	</action>
 	<action>
@@ -272,10 +254,11 @@
 		</goals>
 	</action>
 	<action>
-		<actionName>CUSTOM-ArchUnit Maven plugin</actionName>
-		<displayName>ArchUnit Maven plugin</displayName>
+		<actionName>CUSTOM-Forbidden API Checker</actionName>
+		<displayName>Forbidden API Checker</displayName>
 		<goals>
-			<goal>arch-unit:arch-test</goal>
+			<goal>de.thetaphi:forbiddenapis:check@check-forbiddenapis</goal>
+			<goal>de.thetaphi:forbiddenapis:check@check-forbidden-test-apis</goal>			
 		</goals>
 	</action>
 	<action>

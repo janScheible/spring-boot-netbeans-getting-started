@@ -189,8 +189,12 @@
 		<actionName>CUSTOM-Integration Test</actionName>
 		<displayName>Integration Test</displayName>
 		<goals>
+			<goal>process-test-classes</goal>
 			<goal>failsafe:integration-test</goal>
 		</goals>
+		<activatedProfiles>
+			<activatedProfile>skip-all-but-compilation-and-resources-and-unit-tests</activatedProfile>
+		</activatedProfiles>
 	</action>
 	<action>
 		<actionName>CUSTOM-Test Gap Analysis (Unit Test only)</actionName>

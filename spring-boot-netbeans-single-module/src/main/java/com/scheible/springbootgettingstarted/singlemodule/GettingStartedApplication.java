@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- *
  * @author sj
  */
 @SpringBootApplication
@@ -19,4 +18,5 @@ public class GettingStartedApplication {
 		logger.info("Running the application...");
 		SpringApplication.run(GettingStartedApplication.class, args);
 	}
+
 }

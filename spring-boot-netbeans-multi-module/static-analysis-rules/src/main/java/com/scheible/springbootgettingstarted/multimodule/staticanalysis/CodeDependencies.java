@@ -23,6 +23,15 @@ import static com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.sli
  */
 public class CodeDependencies {
 
+	public static final ArchRule noPackageCyclesRule = slices().assignedFrom(new SlicePerPackage())
+		.should()
+		.beFreeOfCycles();
+
+	public static final ArchRule packageLayeringRule = noClasses().that(not(new MainMethodPredicate()))
+		.should(new DependOnDescendantPackagesCondition())
+		.allowEmptyShould(true)
+		.because("lower packages shouldn't build on higher packages");
+
 	private static class SlicePerPackage implements SliceAssignment {
 
 		@Override
@@ -37,9 +46,26 @@ public class CodeDependencies {
 
 	}
 
-	public static final ArchRule noPackageCyclesRule = slices().assignedFrom(new SlicePerPackage())
-		.should()
-		.beFreeOfCycles();
+	private static class MainMethodPredicate extends DescribedPredicate<JavaClass> {
+
+		MainMethodPredicate() {
+			super("class having a main method");
+		}
+
+		@Override
+		public boolean test(JavaClass input) {
+			return input.getAllMethods()
+				.stream()
+				.anyMatch(method -> "main".equals(method.getName()) && method.getModifiers().contains(STATIC)
+						&& method.getModifiers().contains(PUBLIC) && method.getRawReturnType().getName().equals("void")
+						&& method.getRawParameterTypes()
+							.stream()
+							.map(JavaClass::getName)
+							.toList()
+							.equals(List.of("[Ljava.lang.String;")));
+		}
+
+	}
 
 	private static class DependOnDescendantPackagesCondition extends ArchCondition<JavaClass> {
 
@@ -61,32 +87,6 @@ public class CodeDependencies {
 			String originPackageName = origin.getPackageName();
 			String targetSubPackagePrefix = target.getPackageName();
 			return targetSubPackagePrefix.contains(originPackageName + ".");
-		}
-
-	}
-
-	public static final ArchRule packageLayeringRule = noClasses().that(not(new MainMethodPredicate()))
-		.should(new DependOnDescendantPackagesCondition())
-		.allowEmptyShould(true)
-		.because("lower packages shouldn't build on higher packages");
-
-	private static class MainMethodPredicate extends DescribedPredicate<JavaClass> {
-
-		MainMethodPredicate() {
-			super("class having a main method");
-		}
-
-		@Override
-		public boolean test(JavaClass input) {
-			return input.getAllMethods()
-				.stream()
-				.anyMatch(method -> "main".equals(method.getName()) && method.getModifiers().contains(STATIC)
-						&& method.getModifiers().contains(PUBLIC) && method.getRawReturnType().getName().equals("void")
-						&& method.getRawParameterTypes()
-							.stream()
-							.map(JavaClass::getName)
-							.toList()
-							.equals(List.of("[Ljava.lang.String;")));
 		}
 
 	}

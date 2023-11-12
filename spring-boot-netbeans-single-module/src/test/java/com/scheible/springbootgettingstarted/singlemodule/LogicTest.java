@@ -1,11 +1,10 @@
 package com.scheible.springbootgettingstarted.singlemodule;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
- *
  * @author sj
  */
 class LogicTest {
@@ -14,4 +13,5 @@ class LogicTest {
 	void unitTest() {
 		assertThat(Logic.calculate(2)).isEqualTo(44);
 	}
+
 }
