@@ -52,6 +52,7 @@ To test if the Eclipse compiler (which is able to do incremental compilation) pe
 
 ## Prerequisites
 
+1. clone the repository with `git clone --config core.autocrlf=input` to avoid line ending problems on Windows (the formatters are using `LR`)
 1. JDK 17
 1. recent Maven (tested with 3.9.5), the Maven Daemon is recommended to speed up the IDE actions
 1. Netbeans (tested with 19)
