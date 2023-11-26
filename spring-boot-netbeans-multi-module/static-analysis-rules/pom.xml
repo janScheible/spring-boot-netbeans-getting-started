@@ -14,10 +14,6 @@
 	<packaging>jar</packaging>
 	<name>spring-boot-netbeans-multi-module :: static-analysis rules</name>
 
-	<properties>
-		<multiModuleRootRelativeUp>..</multiModuleRootRelativeUp>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.tngtech.archunit</groupId>

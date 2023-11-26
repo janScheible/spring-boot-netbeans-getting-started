@@ -20,7 +20,6 @@
 				<artifactId>maven-pmd-plugin</artifactId>
 				<configuration>
 					<skip>false</skip>
-					<includeTests>true</includeTests>
 					<linkXRef>false</linkXRef>
 					<printFailingErrors>true</printFailingErrors>
 					<analysisCache>true</analysisCache>
@@ -47,10 +46,22 @@
 				</dependencies>
 				<executions>
 					<execution>
+						<id>pmd-check</id>
 						<goals>
 							<goal>check</goal>
+						</goals>
+						<configuration>
+							<includeTests>true</includeTests>
+						</configuration>
+					</execution>
+					<execution>
+						<id>cpd-check</id>
+						<goals>
 							<goal>cpd-check</goal>
 						</goals>
+						<configuration>
+							<includeTests>false</includeTests>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -60,6 +71,7 @@
 					<skip>false</skip>
 					<includeTestSourceDirectory>true</includeTestSourceDirectory>
 					<configLocation>rules/checkstyle.xml</configLocation>
+					<suppressionsLocation>rules/checkstyle-suppressions.xml</suppressionsLocation>
 				</configuration>
 				<dependencies>
 					<dependency>

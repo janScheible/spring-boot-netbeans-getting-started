@@ -48,7 +48,6 @@ To test if the Eclipse compiler (which is able to do incremental compilation) pe
     -   **[Enforce Dependency Convergence]** `enforcer:enforce@dependency-convergence`
     -   **[Available Dependency Updates]** `versions:display-dependency-updates`
     -   **[Source Lines of Code]** `sloc-maven-plugin:sloc`
-    -   **[PIT Mutation Test]** `pitest-maven:mutationCoverage` with report generation
 
 ## Prerequisites
 
@@ -130,6 +129,7 @@ To test if the Eclipse compiler (which is able to do incremental compilation) pe
 1. no usage of `var` at all because the diamond operator does a good enough job (the Spring teams agrees: https://github.com/spring-projects/spring-framework/wiki/Code-Style#local-variable-type-inference)
 1. be careful with static initializers that perform heavy operations, they might slow down app start
     1. prefer lazy instantiation with either https://en.wikipedia.org/wiki/Initialization-on-demand_holder_idiom or a simple singleton with a `synchronnized` block
+1. whenever a `Locale` is required use `Locale.ROOT` (e.g. `String#toLowerCase(Locale)`)
 
 ## Commit message format
 

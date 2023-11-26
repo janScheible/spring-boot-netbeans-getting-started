@@ -2,6 +2,9 @@
 java.util.Collections#emptyList()
 java.util.Collections#emptyMap()
 java.util.Collections#emptySet()
+java.util.Collections#singleton(java.lang.Object);
+
+java.util.AbstractMap$SimpleImmutableEntry#<init>(java.lang.Object, java.lang.Object) @ Use 'Map.entry()' instead.
 
 java.util.Hashtable @ Use 'HashMap' instead.
 java.util.Vector @ Use 'ArrayList' instead.
@@ -23,10 +26,6 @@ org.apache.logging.log4j.**
 java.lang.System#gc()
 java.lang.Runtime#gc()
 java.lang.System#runFinalization()
-
-@defaultMessage Use 'String#formatted(...)' instead.
-java.lang.String#format(java.lang.String, java.lang.Object[])
-java.lang.String#format(java.util.Locale, java.lang.String, java.lang.Object[])
 
 java.lang.System#exit(int) @ What do you want to do? ;-)
 
