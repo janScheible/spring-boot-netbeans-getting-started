@@ -56,7 +56,7 @@ To test if the Eclipse compiler (which is able to do incremental compilation) pe
 1. recent Maven (tested with 3.9.5), the Maven Daemon is recommended to speed up the IDE actions
 1. Netbeans (tested with 19)
 1. `mvn clean install` in `skip-execution-profile/maven-skip-execution-profile-extension` directory of this repository
-1. `mvn clean install` of [Pocketsaw 1.7.0](https://github.com/janScheible/pocketsaw/tree/1.5.1)
+1. `mvn clean install` of [Pocketsaw 1.7.1](https://github.com/janScheible/pocketsaw/tree/1.7.1)
 1. **[optional]** [External Code Formatters for NetBeans](https://funfried.github.io/externalcodeformatter_for_netbeans/) to apply the Spring Java Format directly in the IDE
 
     - **NOTE:** It is important that the version of the `io.spring.javaformat:spring-javaformat-formatter` and `org.eclipse.jdt:org.eclipse.jdt.core` dependencies of the plugin are matching the version of the used Maven plugin.
