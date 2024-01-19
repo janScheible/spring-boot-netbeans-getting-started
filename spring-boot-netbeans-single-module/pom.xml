@@ -46,7 +46,7 @@
 		<pitest-maven.version>1.15.3</pitest-maven.version>
 		<pitest-junit5-plugin.version>1.2.1</pitest-junit5-plugin.version>
 
-		<pmd.version>6.55.0</pmd.version>
+		<pmd.version>7.0.0-rc4</pmd.version>
 		<checksytle.version>10.12.4</checksytle.version>
 		<spring-javaformat-checkstyle.version>0.0.39</spring-javaformat-checkstyle.version>
 
@@ -315,6 +315,13 @@
 					</rulesets>
 				</configuration>
 				<dependencies>
+					<!-- Can be removed as soon as the plugin has native PMD 7.x support. -->
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-compat6</artifactId>
+						<version>${pmd.version}</version>
+					</dependency>
+
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
 						<artifactId>pmd-core</artifactId>
@@ -323,6 +330,19 @@
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
 						<artifactId>pmd-java</artifactId>
+						<version>${pmd.version}</version>
+					</dependency>
+
+					<!-- Just needed to make sure that no PMD 6.x dependencies are dragged in
+						(can also be removed as soon as native PMD 7.x support is there). -->
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-javascript</artifactId>
+						<version>${pmd.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-jsp</artifactId>
 						<version>${pmd.version}</version>
 					</dependency>
 				</dependencies>

@@ -28,6 +28,13 @@
 					</rulesets>
 				</configuration>
 				<dependencies>
+					<!-- Can be removed as soon as the plugin has native PMD 7.x support. -->
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-compat6</artifactId>
+						<version>${pmd.version}</version>
+					</dependency>
+
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
 						<artifactId>pmd-core</artifactId>
@@ -38,6 +45,20 @@
 						<artifactId>pmd-java</artifactId>
 						<version>${pmd.version}</version>
 					</dependency>
+
+					<!-- Just needed to make sure that no PMD 6.x dependencies are dragged in
+						(can also be removed as soon as native PMD 7.x support is there). -->
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-javascript</artifactId>
+						<version>${pmd.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-jsp</artifactId>
+						<version>${pmd.version}</version>
+					</dependency>
+
 					<dependency>
 						<groupId>com.scheible.springbootgettingstarted.multimodule.staticanalysis</groupId>
 						<artifactId>static-analysis-rules</artifactId>
