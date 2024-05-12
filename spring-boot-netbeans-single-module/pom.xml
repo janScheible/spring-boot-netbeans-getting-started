@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.3</version>
+		<version>3.2.5</version>
 		<relativePath></relativePath>
 	</parent>
 
@@ -40,13 +40,13 @@
 		<sortpom-maven-plugin.version>3.4.1</sortpom-maven-plugin.version>
 		<spring-javaformat-maven-plugin.version>0.0.41</spring-javaformat-maven-plugin.version>
 		<impsort-maven-plugin.version>1.9.0</impsort-maven-plugin.version>
-		<maven-pmd-plugin.version>3.21.2</maven-pmd-plugin.version>
+		<maven-pmd-plugin.version>3.22.0</maven-pmd-plugin.version>
 		<maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
 		<maven-forbiddenapis-plugin.version>3.7</maven-forbiddenapis-plugin.version>
 		<pitest-maven.version>1.15.8</pitest-maven.version>
 		<pitest-junit5-plugin.version>1.2.1</pitest-junit5-plugin.version>
 
-		<pmd.version>7.0.0</pmd.version>
+		<pmd.version>7.1.0</pmd.version>
 		<checksytle.version>10.14.2</checksytle.version>
 		<spring-javaformat-checkstyle.version>0.0.41</spring-javaformat-checkstyle.version>
 
@@ -315,13 +315,6 @@
 					</rulesets>
 				</configuration>
 				<dependencies>
-					<!-- Can be removed as soon as the plugin has native PMD 7.x support. -->
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-compat6</artifactId>
-						<version>${pmd.version}</version>
-					</dependency>
-
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
 						<artifactId>pmd-core</artifactId>
@@ -330,19 +323,6 @@
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
 						<artifactId>pmd-java</artifactId>
-						<version>${pmd.version}</version>
-					</dependency>
-
-					<!-- Just needed to make sure that no PMD 6.x dependencies are dragged in
-						(can also be removed as soon as native PMD 7.x support is there). -->
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-javascript</artifactId>
-						<version>${pmd.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-jsp</artifactId>
 						<version>${pmd.version}</version>
 					</dependency>
 				</dependencies>
