@@ -87,6 +87,11 @@ public class SkipExecutionProfileModelProcessor implements ModelProcessor {
 	}
 
 	private Model addProfile(final Model model) {
+		// it seems that IntelliJ calls Maven "differently" and locatePom() is never called --> just opt-out assuming that the skip profiles aren't needed anyway
+		if (skipExecutionConfiguration == null) {
+			return model;
+		}
+
 		getOrCreateProfile(model, "skip-compilation-and-resources", profile -> {
 			createSkipPluginExecution(profile, DEFAULT_GROUP_ID, "maven-resources-plugin",
 					"default-resources", "default-testResources");
